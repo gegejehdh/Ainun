@@ -1,488 +1,805 @@
-Nur Ainun
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latihan Soal - Lesson I: Hi, I'm Sandi</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Website Latihan Soal - Nur Ainun</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f1;
+            color: #2b3e34;
+        }
+        .matcha-gradient {
+            background: linear-gradient(135deg, #4A7C59 0%, #688B58 100%);
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
+<body class="min-h-screen flex flex-col justify-between">
 
-    <!-- Header -->
-    <header class="bg-indigo-600 text-white shadow-md">
-        <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="bg-white/10 p-2 rounded-xl">
-                    <i class="fa-solid fa-graduation-cap text-2xl"></i>
-                </div>
-                <div>
-                    <h1 class="font-bold text-lg">English Grade X - Lesson I</h1>
-                    <p class="text-xs text-indigo-200">Hi, I'm Sandi (Self-Introduction & Pronouns)</p>
-                </div>
-            </div>
-            <div id="user-badge" class="hidden items-center space-x-2 bg-indigo-700 px-3 py-1.5 rounded-full text-sm">
-                <i class="fa-solid fa-user-circle"></i>
-                <span id="display-name" class="font-semibold"></span>
+    <header class="bg-[#4A7C59] text-white shadow-md py-4 px-6">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <h1 class="text-lg md:text-xl font-bold tracking-wide">🌿 Latihan Soal Penelitian Sosial</h1>
+            <div id="user-badge" class="hidden bg-[#385E43] px-3 py-1 rounded-full text-xs md:text-sm font-medium">
+                👤 <span id="display-username">Nur Ainun</span>
             </div>
         </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="max-w-4xl w-full mx-auto px-4 py-8 flex-grow">
+    <main class="max-w-md w-full mx-auto p-4 md:p-6 my-auto">
 
-        <!-- Login Card -->
-        <section id="login-section" class="bg-white rounded-2xl shadow-xl p-8 max-w-md mx-auto border border-slate-100">
+        <div id="view-password" class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#d3e2d6]">
             <div class="text-center mb-6">
-                <div class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-slate-900">Autentikasi Siswa</h2>
-                <p class="text-sm text-slate-500 mt-1">Masukkan nama lengkap Anda untuk memulai kuis.</p>
+                <div class="inline-block p-3 bg-[#e8f0eb] rounded-full text-[#4A7C59] mb-3 text-3xl">🔒</div>
+                <h2 class="text-2xl font-bold text-[#2b3e34]">Akses Terproteksi</h2>
+                <p class="text-sm text-gray-600 mt-1">Silakan masukkan password rahasia untuk melanjutkan ke halaman latihan.</p>
             </div>
-            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
+
+            <form onsubmit="handlePasswordSubmit(event)" class="space-y-5">
                 <div>
-                    <label class="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap</label>
-                    <input type="text" id="student-name" placeholder="Contoh: Nur Ainun" required
-                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition text-sm">
-                    <p id="login-error" class="text-rose-500 text-xs mt-1.5 hidden"></p>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Password Akses</label>
+                    <div class="relative">
+                        <input type="password" id="input-password" required placeholder="Masukkan password..."
+                            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#4A7C59] text-sm pr-12">
+                        <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#4A7C59] p-1 text-sm font-medium focus:outline-none" title="Lihat/Sembunyikan Password">
+                            <span id="eye-icon">👁️</span>
+                        </button>
+                    </div>
+                    <p id="error-password" class="text-xs text-red-500 mt-1 hidden">Password salah! Password yang benar adalah Nailoong.</p>
                 </div>
-                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl transition duration-200 shadow-lg shadow-indigo-100">
-                    Mulai Ujian <i class="fa-solid fa-arrow-right ml-2"></i>
+
+                <button type="submit" class="w-full matcha-gradient text-white py-3 rounded-xl font-semibold shadow-lg hover:opacity-95 transition transform active:scale-95">
+                    Lanjutkan 🔑
                 </button>
             </form>
-        </section>
+        </div>
 
-        <!-- Quiz Section -->
-        <section id="quiz-section" class="hidden space-y-6">
-            <!-- Top Bar: Timer & Progress -->
-            <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 flex flex-wrap justify-between items-center gap-4">
-                <div class="flex items-center space-x-2">
-                    <span class="text-sm font-medium text-slate-500">Soal ke:</span>
-                    <span id="current-question-num" class="text-lg font-bold text-indigo-600">1</span>
-                    <span class="text-sm text-slate-400">/ 20</span>
-                </div>
-                <div class="flex items-center space-x-2 bg-rose-50 text-rose-600 px-4 py-2 rounded-xl font-semibold text-sm">
-                    <i class="fa-regular fa-clock"></i>
-                    <span id="timer-display">20:00</span>
-                </div>
+        <div id="view-login" class="hidden bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#d3e2d6]">
+            <div class="text-center mb-6">
+                <div class="inline-block p-3 bg-[#e8f0eb] rounded-full text-[#4A7C59] mb-3 text-3xl">🍵</div>
+                <h2 class="text-2xl font-bold text-[#2b3e34]">Selamat Datang!</h2>
+                <p class="text-sm text-gray-600 mt-1">Masukkan nama lengkap, pilih jumlah soal, dan durasi waktu untuk memulai.</p>
             </div>
 
-            <!-- Question Card -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 md:p-8">
-                <h3 id="question-text" class="text-lg font-semibold text-slate-900 mb-6"></h3>
-                <div id="options-container" class="space-y-3"></div>
-            </div>
-
-            <!-- Navigation Bar -->
-            <div class="flex justify-between items-center bg-white rounded-2xl p-4 shadow-sm border border-slate-100">
-                <button onclick="prevQuestion()" id="prev-btn" class="px-5 py-2.5 rounded-xl border border-slate-200 font-medium text-sm text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition">
-                    <i class="fa-solid fa-arrow-left mr-2"></i> Sebelumnya
-                </button>
-                <div id="palette-trigger" class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-3 py-2 rounded-xl cursor-pointer hover:bg-indigo-100 transition" onclick="togglePalette()">
-                    <i class="fa-solid fa-grid-2 mr-1"></i> Navigasi Soal
-                </div>
-                <button onclick="nextQuestion()" id="next-btn" class="px-5 py-2.5 rounded-xl bg-indigo-600 text-white font-medium text-sm hover:bg-indigo-700 transition shadow-md shadow-indigo-100">
-                    Selanjutnya <i class="fa-solid fa-arrow-right ml-2"></i>
-                </button>
-            </div>
-
-            <!-- Question Palette Drawer/Modal -->
-            <div id="palette-modal" class="hidden bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-                <h4 class="font-semibold text-slate-800 mb-4 text-sm">Nomor Soal</h4>
-                <div id="question-palette" class="grid grid-cols-5 sm:grid-cols-10 gap-2"></div>
-            </div>
-        </section>
-
-        <!-- Result Section -->
-        <section id="result-section" class="hidden bg-white rounded-2xl shadow-xl p-8 max-w-2xl mx-auto border border-slate-100 text-center space-y-6">
-            <div class="w-20 h-20 bg-emerald-50 text-emerald-600 rounded-3xl flex items-center justify-center mx-auto text-3xl shadow-inner">
-                <i class="fa-solid fa-award"></i>
-            </div>
-            <div>
-                <h2 class="text-2xl font-bold text-slate-900">Ujian Telah Selesai!</h2>
-                <p class="text-slate-500 text-sm mt-1">Berikut adalah hasil evaluasi latihan soal Anda.</p>
-            </div>
-            <div class="bg-slate-50 p-6 rounded-2xl grid grid-cols-3 gap-4 border border-slate-100">
+            <form onsubmit="handleLogin(event)" class="space-y-4">
                 <div>
-                    <p class="text-xs text-slate-400 font-medium uppercase">Nilai Akhir</p>
-                    <p id="score-val" class="text-3xl font-bold text-indigo-600 mt-1">0</p>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Lengkap</label>
+                    <input type="text" id="input-name" required placeholder="Masukkan nama Anda..."
+                        class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#4A7C59] text-sm">
+                    <p id="error-name" class="text-xs text-red-500 mt-1 hidden">Akses ditolak! Website ini khusus untuk Nur Ainun.</p>
                 </div>
-                <div>
-                    <p class="text-xs text-slate-400 font-medium uppercase">Benar</p>
-                    <p id="correct-val" class="text-3xl font-bold text-emerald-600 mt-1">0</p>
-                </div>
-                <div>
-                    <p class="text-xs text-slate-400 font-medium uppercase">Salah/Kosong</p>
-                    <p id="wrong-val" class="text-3xl font-bold text-rose-600 mt-1">0</p>
-                </div>
-            </div>
-            <div class="flex flex-col sm:flex-row gap-3">
-                <button onclick="showReview()" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl transition duration-200 shadow-lg shadow-indigo-100 text-sm">
-                    <i class="fa-solid fa-book-open mr-2"></i> Lihat Pembahasan Soal
-                </button>
-                <button onclick="location.reload()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3 rounded-xl transition duration-200 text-sm">
-                    <i class="fa-solid fa-rotate-right mr-2"></i> Keluar / Ulangi
-                </button>
-            </div>
-        </section>
 
-        <!-- Review Section -->
-        <section id="review-section" class="hidden space-y-6 max-w-3xl mx-auto">
-            <div class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-                <h2 class="font-bold text-lg text-slate-800"><i class="fa-solid fa-list-check text-indigo-600 mr-2"></i> Pembahasan Soal (Bilingual)</h2>
-                <button onclick="backToResult()" class="text-sm bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-xl font-medium text-slate-600 transition">Kembali ke Nilai</button>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Pilih Jumlah Soal</label>
+                    <select id="select-count" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#4A7C59] text-sm bg-white">
+                        <option value="10">10 Soal</option>
+                        <option value="20">20 Soal</option>
+                        <option value="30">30 Soal</option>
+                        <option value="40">40 Soal</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Pilih Waktu Pengerjaan</label>
+                    <select id="select-time" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#4A7C59] text-sm bg-white">
+                        <option value="5">5 Menit</option>
+                        <option value="10" selected>10 Menit</option>
+                        <option value="15">15 Menit</option>
+                        <option value="20">20 Menit</option>
+                        <option value="25">25 Menit</option>
+                        <option value="30">30 Menit</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="w-full matcha-gradient text-white py-3 rounded-xl font-semibold shadow-lg hover:opacity-95 transition transform active:scale-95 pt-3">
+                    Mulai Mengerjakan 🚀
+                </button>
+            </form>
+        </div>
+
+        <div id="view-quiz" class="hidden space-y-4 max-w-2xl w-full mx-auto">
+            
+            <div class="bg-white rounded-2xl shadow-md p-4 border border-[#d3e2d6]">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-2">
+                        <button type="button" onclick="toggleNumberGrid()" class="px-3 py-1.5 bg-[#e8f0eb] hover:bg-[#d8e8dc] text-[#4A7C59] text-xs font-bold rounded-lg transition flex items-center space-x-1">
+                            <span>📌 Navigasi Nomor Soal</span>
+                            <span id="nav-toggle-icon">▼</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div id="timer-badge" class="bg-red-50 text-red-700 px-3 py-1 rounded-lg text-xs font-bold border border-red-200 flex items-center space-x-1">
+                            <span>⏱️</span> <span id="timer-display">10:00</span>
+                        </div>
+                        <span id="quiz-progress-top" class="text-xs font-bold text-[#4A7C59]">Soal 1 dari 10</span>
+                    </div>
+                </div>
+                <!-- Number grid hidden initially -->
+                <div id="number-grid-container" class="hidden mt-3 pt-3 border-t border-gray-100">
+                    <p class="text-xs font-semibold text-gray-600 mb-2">Klik nomor untuk melompat ke soal:</p>
+                    <div id="number-grid" class="flex flex-wrap gap-2">
+                        <!-- Grid generated via JS -->
+                    </div>
+                </div>
             </div>
-            <div id="review-list" class="space-y-4"></div>
-        </section>
+
+            <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#d3e2d6]">
+                <div class="flex justify-between items-center mb-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                    <span id="quiz-progress-text">Soal 1 dari 10</span>
+                    <span id="quiz-category" class="bg-[#e8f0eb] text-[#4A7C59] px-2.5 py-1 rounded-md">Metode Pendekatan</span>
+                </div>
+
+                <h3 id="quiz-question" class="text-base md:text-lg font-semibold text-[#2b3e34] mb-5 leading-relaxed">
+                    Pertanyaan akan muncul di sini...
+                </h3>
+
+                <div id="quiz-options" class="space-y-3">
+                    <!-- Options injected via JS -->
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="flex justify-between items-center mt-8 pt-4 border-t border-gray-100">
+                    <button id="btn-prev" onclick="prevQuestion()" class="px-4 py-2 rounded-xl border border-gray-300 text-gray-700 text-sm font-medium hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed">
+                        ← Sebelumnya
+                    </button>
+                    <button id="btn-next" onclick="nextQuestion()" class="px-5 py-2 rounded-xl matcha-gradient text-white text-sm font-medium shadow hover:opacity-95">
+                        Selanjutnya →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Motivation Banner -->
+            <div class="bg-[#e2ede4] border-l-4 border-[#4A7C59] p-3 md:p-4 rounded-r-xl shadow-sm">
+                <p id="motivation-text" class="text-xs md:text-sm font-medium text-[#2f4f38] italic">
+                    "Semangat terus Nur Ainun! Setiap langkah kecil membawamu lebih dekat pada kesuksesan! ✨"
+                </p>
+            </div>
+
+        </div>
+
+        <div id="view-result" class="hidden space-y-6 max-w-2xl w-full mx-auto">
+            <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 text-center border border-[#d3e2d6]">
+                <div class="inline-block p-4 bg-[#e8f0eb] rounded-full text-[#4A7C59] text-4xl mb-3">🏆</div>
+                <h2 class="text-2xl font-bold text-[#2b3e34]">Hasil Latihan Soal</h2>
+                <p class="text-sm text-gray-600 mt-1">Kerja bagus, <span id="res-username" class="font-bold text-[#4A7C59]"></span>!</p>
+                
+                <div class="my-6 p-6 bg-[#f7faf8] rounded-2xl inline-block w-full max-w-xs border border-[#d3e2d6]">
+                    <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold">Skor Akhir Anda</span>
+                    <div id="res-score" class="text-4xl font-extrabold text-[#4A7C59] my-1">85</div>
+                    <p id="res-detail" class="text-xs text-gray-600">Benar 17 dari 20 soal</p>
+                </div>
+
+                <!-- Score Appreciation / Encouragement Banner -->
+                <div id="score-appreciation-box" class="mb-6 p-4 rounded-xl text-xs md:text-sm font-medium border">
+                    <!-- Injected via JS -->
+                </div>
+
+                <div>
+                    <button onclick="restartQuiz()" class="matcha-gradient text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:opacity-95 text-sm">
+                        🔄 Coba Lagi / Ulangi Latihan
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#d3e2d6]">
+                <h3 class="text-lg font-bold text-[#2b3e34] mb-4 pb-2 border-b border-gray-100">📖 Pembahasan Jawaban Lengkap</h3>
+                <div id="discussion-list" class="space-y-6">
+                    <!-- Discussions injected via JS -->
+                </div>
+            </div>
+        </div>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="text-center py-6 text-xs text-slate-400 border-t border-slate-100 mt-10">
-        <p>&copy; 2026 English Learning Modules. Developed for Grade X Students.</p>
+    <div id="confirm-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full border border-[#d3e2d6] text-center space-y-4 animate-scale-up">
+            <div class="inline-block p-3 bg-[#e8f0eb] rounded-full text-[#4A7C59] text-2xl">❓</div>
+            <h3 class="text-lg font-bold text-[#2b3e34]">Yakin Ingin Menyelesaikan?</h3>
+            <p class="text-xs md:text-sm text-gray-600">Pastikan semua soal telah terjawab dengan teliti sebelum melihat hasil akhir dan pembahasan.</p>
+            <div class="flex space-x-3 pt-2">
+                <button type="button" onclick="closeConfirmModal()" class="flex-1 px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 text-xs font-semibold hover:bg-gray-50">
+                    Lanjut Kerjakan
+                </button>
+                <button type="button" onclick="confirmFinishQuiz()" class="flex-1 px-4 py-2.5 rounded-xl matcha-gradient text-white text-xs font-semibold shadow hover:opacity-95">
+                    Ya, Selesaikan ✨
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center py-4 text-xs text-gray-500">
+        Didesain khusus dengan nuansa Matcha untuk Nur Ainun 🍵
     </footer>
 
     <script>
-        const questions = [
+        const rawQuestionPool = [
             {
-                q: "What is the primary purpose of self-introductions in a class setting?",
-                options: ["To show off achievements", "To be brief and conversational", "To recite a formal biography", "To speak for at least 10 minutes"],
-                answer: 1,
-                explanation: "English: Self-introductions in a class are meant to be brief and conversational, sharing basic details like name, origin, and an interesting detail.<br>Bahasa Indonesia: Perkenalan diri di dalam kelas dimaksudkan agar singkat dan bersifat percakapan, membagikan detail dasar seperti nama, asal, dan detail menarik."
+                q: "Metode pendekatan utama yang terstruktur sejak awal dan menggunakan data berupa angka serta analisis statistik disebut...",
+                options: {
+                    a: "Metode Kualitatif",
+                    b: "Metode Kuantitatif",
+                    c: "Mixed Methods",
+                    d: "Metode Deskriptif",
+                    e: "Metode Historis"
+                },
+                correct: "b",
+                discussion: "Kuantitatif adalah metode pendekatan yang terstruktur sejak awal dengan menggunakan data angka dan dianalisis secara statistik (contoh: survei, eksperimen, korelasional)."
             },
             {
-                q: "When introducing yourself, which information is NOT typically shared?",
-                options: ["Name and origin", "Hobbies and education", "Bank account password", "Family background"],
-                answer: 2,
-                explanation: "English: Personal financial details like bank account passwords are private and not shared during a standard classroom self-introduction.<br>Bahasa Indonesia: Detail keuangan pribadi seperti kata sandi akun bank bersifat pribadi dan tidak dibagikan saat perkenalan diri standar di kelas."
+                q: "Berikut ini yang merupakan contoh dari pendekatan metode Kualitatif adalah...",
+                options: {
+                    a: "Survei dan Eksperimen",
+                    b: "Korelasional dan Kausal Komparatif",
+                    c: "Studi Kasus dan Etnografi",
+                    d: "Eksperimen dan Eksploratif",
+                    e: "Tabulasi Data Angka"
+                },
+                correct: "c",
+                discussion: "Kualitatif bertujuan mencari pemahaman mendalam tentang realitas sosial, dengan contoh nyata meliputi studi kasus, etnografi, fenomenologi, historis, dan grounded theory."
             },
             {
-                q: "Choose the correct subject pronoun to fill in the blank: 'Ainun takes care of denny = _____ takes care of him.'",
-                options: ["He", "She", "They", "It"],
-                answer: 1,
-                explanation: "English: Maya is female, so the appropriate subject pronoun substitute is 'She'.<br>Bahasa Indonesia: Maya adalah perempuan, sehingga kata ganti subjek (subject pronoun) yang tepat adalah 'She'."
+                q: "Kombinasi antara metode kuantitatif dan kualitatif untuk menutupi kelemahan masing-masing metode disebut...",
+                options: {
+                    a: "Metode Gabungan (Mixed Methods)",
+                    b: "Metode Tunggal",
+                    c: "Metode Sampel Acak",
+                    d: "Reduksi Data",
+                    e: "Coding Data"
+                },
+                correct: "a",
+                discussion: "Metode Gabungan (Mixed Methods) adalah kombinasi metode kuantitatif dan kualitatif baik bersamaan maupun bertahap guna memperoleh hasil penelitian yang lebih komprehensif."
             },
             {
-                q: "What is the object pronoun form for the subject pronoun 'I'?",
-                options: ["my", "mine", "me", "myself"],
-                answer: 2,
-                explanation: "English: The object pronoun corresponding to 'I' is 'me', which usually comes after a verb or preposition.<br>Bahasa Indonesia: Kata ganti objek (object pronoun) yang pasif menggantikan 'I' adalah 'me', yang biasanya muncul setelah kata kerja atau kata depan."
+                q: "Teknik penentuan sampel (subjek penelitian) yang mengutamakan keterwakilan populasi agar dapat digeneralisasi disebut...",
+                options: {
+                    a: "Purposive Sampling",
+                    b: "Non-probabilitas",
+                    c: "Probabilitas (Acak)",
+                    d: "Snowball Sampling",
+                    e: "Accidental Sampling"
+                },
+                correct: "c",
+                discussion: "Probabilitas (Acak) mengutamakan keterwakilan populasi agar dapat digeneralisasi dengan contoh teknik random sampling."
             },
             {
-                q: "Which word is a possessive pronoun that indicates ownership without being followed by a noun?",
-                options: ["my", "mine", "your", "his (followed by noun)"],
-                answer: 1,
-                explanation: "English: 'Mine' is a possessive pronoun that stands alone, whereas 'my' is a possessive adjective followed by a noun.<br>Bahasa Indonesia: 'Mine' adalah kata ganti kepunyaan (possessive pronoun) yang berdiri sendiri, sedangkan 'my' diikuti oleh kata benda."
+                q: "Teknik penentuan sampel yang memiliki tujuan khusus atau kelompok tertentu saja, misalnya purposive sampling, termasuk dalam...",
+                options: {
+                    a: "Probabilitas",
+                    b: "Non-probabilitas (Tidak Acak)",
+                    c: "Metode Kuantitatif Murni",
+                    d: "Metode Statistik",
+                    e: "Random Sampling"
+                },
+                correct: "b",
+                discussion: "Non-probabilitas (Tidak Acak) memiliki tujuan khusus atau kelompok tertentu saja, seperti purposive sampling."
             },
             {
-                q: "Identify the reflexive pronoun in this sentence: 'I hurt myself while playing football.'",
-                options: ["I", "hurt", "myself", "playing"],
-                answer: 2,
-                explanation: "English: 'Myself' is a reflexive pronoun used when the object of the sentence is the same as the subject.<br>Bahasa Indonesia: 'Myself' adalah kata ganti refleksif yang digunakan ketika objek kalimat sama dengan subjeknya."
+                q: "Instrumen pencari fakta berupa tanya jawab langsung yang dapat dilakukan secara terstruktur maupun tidak terstruktur dinamakan...",
+                options: {
+                    a: "Observasi",
+                    b: "Angket",
+                    c: "Dokumentasi",
+                    d: "Wawancara",
+                    e: "Coding"
+                },
+                correct: "d",
+                discussion: "Wawancara adalah teknik pengumpulan data berupa tanya jawab langsung yang bisa bersifat terstruktur atau tidak terstruktur."
             },
             {
-                q: "What does the prefix 'mis-' generally mean?",
-                options: ["Very good or correct", "Wrong, wrongly, lack or failure", "Before or earlier", "After or behind"],
-                answer: 1,
-                explanation: "English: The prefix 'mis-' means wrong, wrongly, lack, or failure (e.g., misunderstand, miscalculate).<br>Bahasa Indonesia: Awalan 'mis-' berarti salah, secara keliru, kekurangan, atau kegagalan (misal: misunderstand/salah paham)."
+                q: "Pengamatan di lapangan yang dapat dilakukan secara partisipasi maupun non-partisipasi disebut...",
+                options: {
+                    a: "Wawancara",
+                    b: "Observasi",
+                    c: "Angket (Kuesioner)",
+                    d: "Dokumentasi",
+                    e: "Tabulating"
+                },
+                correct: "b",
+                discussion: "Observasi adalah pengamatan langsung di lapangan baik secara partisipasi maupun non-partisipasi."
             },
             {
-                q: "Which of the following is an example of an indefinite pronoun?",
-                options: ["This", "Everyone", "He", "My"],
-                answer: 1,
-                explanation: "English: 'Everyone' is a singular indefinite pronoun that replaces nouns without specifying exact persons.<br>Bahasa Indonesia: 'Everyone' adalah kata ganti tak tentu (indefinite pronoun) tunggal yang menggantikan kata benda tanpa merujuk orang secara spesifik."
+                q: "Analisis arsip, buku, foto, atau artefak dalam instrumen pengumpulan data termasuk dalam...",
+                options: {
+                    a: "Observasi",
+                    b: "Wawancara",
+                    c: "Dokumentasi",
+                    d: "Angket",
+                    e: "Reduksi Data"
+                },
+                correct: "c",
+                discussion: "Dokumentasi melibatkan analisis arsip, buku, foto, atau artefak untuk melengkapi fakta penelitian."
             },
             {
-                q: "Choose the correct demonstrative pronoun for a singular object that is far away:",
-                options: ["this", "these", "that", "those"],
-                answer: 2,
-                explanation: "English: 'That' is used as a demonstrative pronoun for a singular object that is farther away.<br>Bahasa Indonesia: 'That' digunakan sebagai kata ganti penunjuk (demonstrative pronoun) untuk benda tunggal yang letaknya jauh."
+                q: "Alur pengolahan data kuantitatif yang benar adalah...",
+                options: {
+                    a: "Tabulating → Coding → Editing",
+                    b: "Editing (Pemeriksaan) → Coding (Pemberian Kode) → Tabulating (Memasukkan ke tabel)",
+                    c: "Reduksi Data → Penyajian Data → Penarikan Kesimpulan",
+                    d: "Coding → Tabulating → Editing",
+                    e: "Penyajian Data → Reduksi Data → Kesimpulan"
+                },
+                correct: "b",
+                discussion: "Alur kuantitatif dimulai dari Editing (Pemeriksaan), dilanjutkan Coding (Pemberian Kode), dan terakhir Tabulating (Memasukkan ke tabel)."
             },
             {
-                q: "Complete the sentence with the correct pronoun: 'The cat cleaned _______ with its tongue.'",
-                options: ["himself", "herself", "itself", "themselves"],
-                answer: 2,
-                explanation: "English: For animals or things referred to by 'it', the reflexive pronoun is 'itself'.<br>Bahasa Indonesia: Untuk hewan atau benda yang merujuk pada 'it', kata ganti refleksifnya adalah 'itself'."
+                q: "Alur pengolahan data kualitatif mencakup tahapan berikut:",
+                options: {
+                    a: "Editing → Coding → Tabulating",
+                    b: "Survei → Eksperimen → Statistik",
+                    c: "Reduksi Data (Penyaringan data penting) → Penyajian Data (Teks/Bagan) → Penarikan Kesimpulan",
+                    d: "Wawancara → Angket → Observasi",
+                    e: "Random Sampling → Purposive Sampling"
+                },
+                correct: "c",
+                discussion: "Alur kualitatif terdiri dari Reduksi Data (penyaringan data penting), Penyajian Data (teks/bagan), dan Penarikan Kesimpulan."
             },
             {
-                q: "Which phrase is used to ask about someone's origin?",
-                options: ["How old are you?", "Where are you from?", "What do you do?", "What is your phone number?"],
-                answer: 1,
-                explanation: "English: 'Where are you from?' or 'Where do you come from?' are standard questions to ask about country, city, or town of origin.<br>Bahasa Indonesia: 'Where are you from?' adalah pertanyaan standar untuk menanyakan asal negara atau kota seseorang."
+                q: "Langkah pertama yang paling awal dalam lima langkah sistematis penelitian sosial adalah...",
+                options: {
+                    a: "Mengumpulkan Data",
+                    b: "Membuat Rancangan (Proposal)",
+                    c: "Mengolah Data",
+                    d: "Menyusun Laporan",
+                    e: "Mengomunikasikan Hasil"
+                },
+                correct: "b",
+                discussion: "Langkah pertama adalah Membuat Rancangan (Proposal) yang mencakup penentuan topik, variabel, perumusan judul, latar belakang, rumusan masalah, dan tujuan."
             },
             {
-                q: "In the sentence 'She is sitting by ______.', which reflexive pronoun fits best?",
-                options: ["herself", "himself", "yourself", "itself"],
-                answer: 0,
-                explanation: "English: Since the subject is 'She', the correct reflexive pronoun used as the object of a preposition is 'herself'.<br>Bahasa Indonesia: Karena subjeknya adalah 'She', kata ganti refleksif yang tepat setelah kata depan adalah 'herself'."
+                q: "Kegiatan terjun ke lapangan mencari data kuantitatif atau kualitatif dari sumber primer maupun sekunder berada pada langkah sistematis ke-...",
+                options: {
+                    a: "Langkah 1",
+                    b: "Langkah 2 (Mengumpulkan Data)",
+                    c: "Langkah 3",
+                    d: "Langkah 4",
+                    e: "Langkah 5"
+                },
+                correct: "b",
+                discussion: "Langkah 2 adalah Mengumpulkan Data dengan terjun langsung ke lapangan mencari data dari sumber primer atau sekunder."
             },
             {
-                q: "What is the correct plural form of the demonstrative pronoun 'this'?",
-                options: ["that", "those", "these", "them"],
-                answer: 2,
-                explanation: "English: The plural form of 'this' (nearby) is 'these'.<br>Bahasa Indonesia: Bentuk jamak dari kata penunjuk 'this' (dekat) adalah 'these'."
+                q: "Menganalisis data yang terkumpul, misalnya menggunakan software SPSS untuk angka atau pisau analisis teori untuk teks kualitatif, termasuk dalam langkah...",
+                options: {
+                    a: "Membuat Rancangan",
+                    b: "Mengumpulkan Data",
+                    c: "Mengolah Data",
+                    d: "Menyusun Laporan",
+                    e: "Mengomunikasikan Hasil"
+                },
+                correct: "c",
+                discussion: "Langkah 3 adalah Mengolah Data, di mana data dianalisis menggunakan SPSS untuk angka atau pisau analisis teori untuk teks kualitatif."
             },
             {
-                q: "Which of the following words uses the prefix 'mis-' correctly?",
-                options: ["misrun", "misunderstand", "mishappy", "misfast"],
-                answer: 1,
-                explanation: "English: 'Misunderstand' means to understand incorrectly, forming a valid word with the prefix 'mis-'.<br>Bahasa Indonesia: 'Misunderstand' berarti salah mengerti, membentuk kata yang valid dengan awalan 'mis-'."
+                q: "Membentuk kerangka karya tulis yang utuh, meliputi Bagian Awal/Identitas → Bagian Isi/Bab Inti → Bagian Akhir/Lampiran adalah inti dari langkah...",
+                options: {
+                    a: "Menyusun Laporan",
+                    b: "Mengomunikasikan Hasil",
+                    c: "Membuat Proposal",
+                    d: "Mengumpulkan Data",
+                    e: "Reduksi Data"
+                },
+                correct: "a",
+                discussion: "Langkah 4 adalah Menyusun Laporan yang membentuk kerangka karya tulis utuh dari bagian awal, isi, hingga akhir."
             },
             {
-                q: "When writing an email to introduce yourself to a pen pal, what should come first after the greeting?",
-                options: ["Your bank details", "Your name and age", "A demand for money", "Your school schedule for next year"],
-                answer: 1,
-                explanation: "English: In self-introduction emails, stating your name and age right after the greeting is standard.<br>Bahasa Indonesia: Dalam email perkenalan diri, mencantumkan nama dan usia tepat setelah salam pembuka adalah hal yang standar."
+                q: "Mempresentasikan atau mempublikasikan hasil penelitian kepada publik agar bermanfaat, memicu diskusi, dan mendapatkan masukan merupakan langkah...",
+                options: {
+                    a: "Langkah 1",
+                    b: "Langkah 2",
+                    c: "Langkah 3",
+                    d: "Langkah 4",
+                    e: "Langkah 5 (Mengomunikasikan Hasil)"
+                },
+                correct: "e",
+                discussion: "Langkah 5 adalah Mengomunikasikan Hasil kepada publik agar bermanfaat dan mendapatkan masukan."
             },
             {
-                q: "Choose the correct pronoun to complete: 'All of those are our magazines. They are ________.'",
-                options: ["ours", "our", "us", "we"],
-                answer: 0,
-                explanation: "English: 'Ours' is a possessive pronoun placed at the end without a noun following it.<br>Bahasa Indonesia: 'Ours' adalah kata ganti kepunyaan (possessive pronoun) yang diletakkan di akhir tanpa diikuti kata benda."
+                q: "Manakah di bawah ini yang bukan merupakan metode pendekatan utama dalam penelitian sosial?",
+                options: {
+                    a: "Kuantitatif",
+                    b: "Kualitatif",
+                    c: "Gabungan (Mixed Methods)",
+                    d: "Eksperimen Murni Tanpa Data",
+                    e: "Ketiga pendekatan di atas adalah benar"
+                },
+                correct: "d",
+                discussion: "Tiga metode pendekatan utama yang diakui adalah Kuantitatif, Kualitatif, dan Gabungan (Mixed Methods)."
             },
             {
-                q: "What is the reduced form or contraction of 'They are' often used in spoken English?",
-                options: ["Their", "There", "They're", "Theirs"],
-                answer: 2,
-                explanation: "English: 'They're' is the reduced/contracted form of 'They are'.<br>Bahasa Indonesia: 'They're' adalah bentuk singkatan (contraction) dari 'They are'."
+                q: "Daftar pertanyaan tertulis yang dapat berbentuk terbuka atau tertutup dalam instrumen pencari fakta disebut...",
+                options: {
+                    a: "Wawancara",
+                    b: "Observasi",
+                    c: "Angket (Kuesioner)",
+                    d: "Dokumentasi",
+                    e: "Coding"
+                },
+                correct: "c",
+                discussion: "Angket atau kuesioner adalah daftar pertanyaan tertulis yang berbentuk terbuka atau tertutup."
             },
             {
-                q: "If someone asks 'What do you do?', what kind of information are they looking for?",
-                options: ["Your hobbies", "Your job or occupation", "Your favorite food", "Your home address"],
-                answer: 1,
-                explanation: "English: 'What do you do?' or 'What's your job?' asks about someone's occupation or profession.<br>Bahasa Indonesia: Pertanyaan ini menanyakan tentang pekerjaan atau profesi seseorang."
+                q: "Mengapa pemilihan pisau analisis atau metode pendekatan yang tepat sangat penting bagi peneliti?",
+                options: {
+                    a: "Agar laporan terlihat tebal",
+                    b: "Agar data yang dihasilkan valid dan bisa dipertanggungjawabkan sesuai jenis data dan tujuan penelitian",
+                    c: "Supaya tidak perlu melakukan pengumpulan data",
+                    d: "Agar penelitian cepat selesai tanpa hambatan",
+                    e: "Agar tidak perlu menulis kesimpulan"
+                },
+                correct: "b",
+                discussion: "Peneliti harus memilih pisau analisis yang tepat agar data yang dihasilkan valid dan bisa dipertanggungjawabkan."
             },
             {
-                q: "Which word from the options is classified as a plural indefinite pronoun?",
-                options: ["Anyone", "Something", "Several", "Everybody"],
-                answer: 2,
-                explanation: "English: 'Several', 'both', 'few', 'many', and 'others' are plural indefinite pronouns.<br>Bahasa Indonesia: 'Several', 'both', 'few', dan 'many' adalah kata ganti tak tentu bentuk jamak."
-            },
-            {
-                q: "In the sentence 'The president _______ gave them the medals.', what function does the reflexive pronoun serve?",
-                options: ["Object of the verb", "Object of a preposition", "To emphasize the subject", "To indicate possession"],
-                answer: 2,
-                explanation: "English: Here, 'himself' is placed right after the subject to emphasize that the president did it personally.<br>Bahasa Indonesia: Di sini, 'himself' diletakkan tepat setelah subjek untuk menegaskan bahwa presiden melakukannya sendiri."
+                q: "Apa fungsi utama dari tahap Reduksi Data dalam penelitian kualitatif?",
+                options: {
+                    a: "Memasukkan data ke dalam tabel angka",
+                    b: "Penyaringan data penting dan relevan",
+                    c: "Membuat kuesioner tertulis",
+                    d: "Menyusun daftar pustaka",
+                    e: "Menghitung statistik deskriptif"
+                },
+                correct: "b",
+                discussion: "Reduksi data berfungsi sebagai penyaringan data penting agar fokus penelitian semakin tajam."
             }
         ];
 
+        const extraQuestions = [
+            { q: "Apa fokus utama dari pendekatan Kuantitatif?", options: { a: "Angka & Statistik", b: "Makna mendalam", c: "Wawancara terbuka", d: "Studi kasus naratif", e: "Etnografi masyarakat" }, correct: "a", discussion: "Pendekatan kuantitatif berfokus pada angka dan statistik yang terstruktur sejak awal." },
+            { q: "Apa fokus utama dari pendekatan Kualitatif?", options: { a: "Analisis SPSS", b: "Makna & Deskripsi realitas sosial", c: "Survei skala besar", d: "Korelasional angka", e: "Tabulasi persentase" }, correct: "b", discussion: "Kualitatif berfokus pada makna dan deskripsi mendalam tentang realitas sosial." },
+            { q: "Contoh metode kuantitatif korelasional termasuk dalam pendekatan...", options: { a: "Kualitatif", b: "Kuantitatif", c: "Mixed Methods", d: "Historis", e: "Fenomenologi" }, correct: "b", discussion: "Korelasional adalah salah satu contoh dari metode kuantitatif." },
+            { q: "Contoh metode kualitatif grounded theory termasuk dalam pendekatan...", options: { a: "Kuantitatif", b: "Kualitatif", c: "Mixed Methods", d: "Eksperimen", e: "Survei" }, correct: "b", discussion: "Grounded theory adalah bagian dari pendekatan kualitatif." },
+            { q: "Apa fungsi dari software SPSS dalam penelitian kuantitatif?", options: { a: "Alat pengolah data angka/statistik", b: "Alat membuat animasi", c: "Alat edit foto arsip", d: "Perekam suara wawancara", e: "Penyaring data kualitatif" }, correct: "a", discussion: "SPSS digunakan untuk mengolah data angka secara statistik." },
+            { q: "Bagian awal dalam struktur penyusunan laporan penelitian biasanya berisi...", options: { a: "Identitas dan pengantar", b: "Bab inti analisis", c: "Lampiran data mentah", d: "Kesimpulan akhir", e: "Tabel tabulasi" }, correct: "a", discussion: "Bagian awal laporan memuat identitas, halaman judul, dan bagian pengantar." },
+            { q: "Bab inti atau pembahasan utama dalam laporan penelitian terletak pada...", options: { a: "Bagian Awal", b: "Bagian Isi", c: "Bagian Lampiran", d: "Daftar Pustaka", e: "Cover depan" }, correct: "b", discussion: "Bagian Isi adalah bab inti dari laporan penelitian." },
+            { q: "Lampiran dan instrumen lengkap penelitian ditempatkan pada...", options: { a: "Bagian Awal", b: "Bagian Isi/Bab Inti", c: "Bagian Akhir", d: "Rumusan Masalah", e: "Latar Belakang" }, correct: "c", discussion: "Lampiran dan instrumen pendukung diletakkan di Bagian Akhir laporan." },
+            { q: "Apa tujuan utama dari perumusan masalah dalam proposal penelitian?", options: { a: "Menentukan arah dan pertanyaan inti yang akan dijawab", b: "Memperbanyak halaman proposal", c: "Menghitung anggaran biaya", d: "Mewawancarai responden", e: "Membuat tabel statistik" }, correct: "a", discussion: "Perumusan masalah berupa pertanyaan untuk mengarahkan jalannya penelitian." },
+            { q: "Mengapa kejujuran pada data sangat ditekankan dalam penelitian?", options: { a: "Agar laporan cepat selesai", b: "Agar hasil penelitian valid, objektif, dan dapat dipertanggungjawabkan", c: "Supaya peneliti mendapat pujian", d: "Agar tidak perlu turun ke lapangan", e: "Supaya angka terlihat bagus" }, correct: "b", discussion: "Kejujuran pada data menjamin validitas dan objektivitas hasil penelitian ilmiah." },
+            { q: "Teknik wawancara terstruktur biasanya menggunakan...", options: { a: "Pedoman pertanyaan yang sudah disiapkan kaku/terinci", b: "Pertanyaan bebas tanpa arah", c: "Hanya observasi visual", d: "Arsip foto sejarah", e: "Eksperimen laboratorium" }, correct: "a", discussion: "Wawancara terstruktur menggunakan daftar pertanyaan yang telah disiapkan secara rinci." },
+            { q: "Wawancara tidak terstruktur bersifat...", options: { a: "Lebih fleksibel seperti percakapan natural", b: "Sangat kaku dan tertulis ketat", c: "Menggunakan kuesioner angka", d: "Hanya melalui SPSS", e: "Menggunakan rumus statistik" }, correct: "a", discussion: "Wawancara tidak terstruktur lebih fleksibel layaknya percakapan mendalam yang mengalir." },
+            { q: "Apa yang dimaksud dengan populasi dalam penelitian?", options: { a: "Keseluruhan objek atau subjek yang diteliti", b: "Hanya satu orang responden", c: "Buku pustaka di perpustakaan", d: "Hasil akhir laporan", e: "Tabel tabulasi data" }, correct: "a", discussion: "Populasi adalah keseluruhan wilayah generalisasi yang terdiri atas objek/subjek dengan kuantitas dan karakteristik tertentu." },
+            { q: "Apa yang dimaksud dengan sampel?", options: { a: "Sebagian dari jumlah dan karakteristik yang dimiliki oleh populasi", b: "Seluruh warga negara", c: "Semua buku arsip", d: "Judul penelitian", e: "Rumusan hipotesis" }, correct: "a", discussion: "Sampel adalah sebagian dari populasi yang diambil untuk diteliti." },
+            { q: "Manakah contoh sumber data primer?", options: { a: "Hasil wawancara langsung dengan narasumber/subjek", b: "Buku teks sejarah tahun 1950", c: "Artikel jurnal internasional orang lain", d: "Arsip dokumen kuno", e: "Statistik BPS yang sudah dipublikasikan" }, correct: "a", discussion: "Sumber primer diperoleh langsung dari subjek atau informan pertama di lapangan." },
+            { q: "Manakah contoh sumber data sekunder?", options: { a: "Catatan harian pribadi peneliti", b: "Hasil wawancara langsung", c: "Buku referensi, dokumen resmi, atau arsip data terdahulu", d: "Observasi partisipan pertama", e: "Jawaban kuesioner responden" }, correct: "c", discussion: "Sumber sekunder adalah sumber pendukung tidak langsung seperti buku, dokumen resmi, atau arsip." },
+            { q: "Apa bentuk penyajian data dalam metode kualitatif?", options: { a: "Teks naratif, uraian, atau bagan/skema", b: "Grafik batang SPSS", c: "Tabel angka statistik murni", d: "Diagram lingkaran persentase", e: "Korelasi Pearson" }, correct: "a", discussion: "Penyajian data kualitatif umumnya berupa teks naratif, uraian sistematis, atau bagan/skema." },
+            { q: "Apa bentuk penyajian data dalam metode kuantitatif?", options: { a: "Tabel angka, grafik statistik, dan diagram", b: "Cerita pendek", c: "Catatan harian etnografi", d: "Transkrip wawancara mendalam", e: "Analisis artefak budaya" }, correct: "a", discussion: "Penyajian data kuantitatif disajikan dalam bentuk tabel angka, grafik statistik, dan diagram." },
+            { q: "Mengapa penelitian sosial memerlukan langkah sistematis?", options: { a: "Agar proses ilmiah berjalan teratur dari awal hingga akhir", b: "Agar peneliti tidak perlu berpikir", c: "Supaya halaman laporan sedikit", d: "Agar tidak perlu menyusun kesimpulan", e: "Supaya data bisa diubah" }, correct: "a", discussion: "Langkah sistematis memastikan penelitian berjalan teratur, logis, dan dapat dipertanggungjawabkan secara ilmiah." },
+            { q: "Sikap apakah yang harus senantiasa dimiliki oleh seorang peneliti sosial?", options: { a: "Kritis, teliti, jujur pada data, dan objektif", b: "Asal-asalan dan terburu-buru", c: "Subjektif memihak satu golongan", d: "Malas membaca literatur", e: "Meniru karya orang lain" }, correct: "a", discussion: "Peneliti yang baik harus bersikap kritis, teliti, jujur pada data, serta objektif." }
+        ];
+
+        const masterPool = [...rawQuestionPool, ...extraQuestions];
+
         let currentUser = "";
-        let currentQuestion = 0;
-        let userAnswers = new Array(questions.length).fill(null);
-        let timeLeft = 20 * 60; // 20 minutes in seconds
+        let selectedCount = 10;
+        let selectedDurationMinutes = 10;
+        let activeQuestions = [];
+        let userAnswers = {}; 
+        let currentIndex = 0;
+        let isGridOpen = false;
         let timerInterval = null;
+        let timeRemainingSeconds = 0;
 
-        function handleLogin(e) {
-            e.preventDefault();
-            const nameInput = document.getElementById('student-name').value.trim();
-            const errorEl = document.getElementById('login-error');
+        const motivationQuotes = [
+            "\"Semangat terus Nur Ainun! Setiap langkah kecil membawamu lebih dekat pada kesuksesan! ✨\"",
+            "\"Tetap fokus dan teliti ya, Nur Ainun! Kamu pasti bisa menyelesaikan latihan ini dengan hasil gemilang! 🌟\"",
+            "\"Ilmu yang dipelajari dengan sabar akan berbuah manis. Semangat, Nur Ainun! 🍵💚\"",
+            "\"Ketelitian adalah kunci utama peneliti hebat. Kamu hebat, Nur Ainun! 🚀\""
+        ];
 
-            if (nameInput.toLowerCase() !== "nur ainun") {
-                errorEl.textContent = "Akses ditolak! Hanya nama 'Nur Ainun' yang diizinkan mengerjakan ujian ini.";
-                errorEl.classList.remove('hidden');
+        function handlePasswordSubmit(event) {
+            event.preventDefault();
+            const passInput = document.getElementById("input-password").value.trim();
+            const errorPassEl = document.getElementById("error-password");
+
+            if (passInput !== "Nailoong") {
+                errorPassEl.classList.remove("hidden");
                 return;
             }
 
-            currentUser = "Nur Ainun";
-            document.getElementById('login-section').classList.add('hidden');
-            document.getElementById('quiz-section').classList.remove('hidden');
-            document.getElementById('user-badge').classList.remove('hidden');
-            document.getElementById('user-badge').classList.add('flex');
-            document.getElementById('display-name').textContent = currentUser;
-
-            initQuiz();
-            startTimer();
+            errorPassEl.classList.add("hidden");
+            document.getElementById("view-password").classList.add("hidden");
+            document.getElementById("view-login").classList.remove("hidden");
         }
 
-        function startTimer() {
-            timerInterval = setInterval(() => {
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    submitQuiz();
-                    return;
-                }
-                timeLeft--;
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                document.getElementById('timer-display').textContent = 
-                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            }, 1000);
-        }
-
-        function initQuiz() {
-            renderQuestion();
-            renderPalette();
-        }
-
-        function renderQuestion() {
-            const q = questions[currentQuestion];
-            document.getElementById('current-question-num').textContent = currentQuestion + 1;
-            document.getElementById('question-text').textContent = `${currentQuestion + 1}. ${q.q}`;
-
-            const container = document.getElementById('options-container');
-            container.innerHTML = "";
-
-            q.options.forEach((opt, idx) => {
-                const isSelected = userAnswers[currentQuestion] === idx;
-                const btn = document.createElement('button');
-                btn.type = "button";
-                btn.className = `w-full text-left px-5 py-3.5 rounded-xl border transition flex items-center space-x-3 text-sm font-medium ${
-                    isSelected 
-                    ? 'border-indigo-600 bg-indigo-50 text-indigo-900 shadow-sm' 
-                    : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
-                }`;
-                btn.innerHTML = `
-                    <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold ${
-                        isSelected ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-500'
-                    }">${String.fromCharCode(65 + idx)}</span>
-                    <span>${opt}</span>
-                `;
-                btn.onclick = () => selectOption(idx);
-                container.appendChild(btn);
-            });
-
-            document.getElementById('prev-btn').disabled = currentQuestion === 0;
-            const nextBtn = document.getElementById('next-btn');
-            if (currentQuestion === questions.length - 1) {
-                nextBtn.innerHTML = `Selesai <i class="fa-solid fa-check ml-2"></i>`;
-                nextBtn.className = "px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition shadow-md shadow-emerald-100";
+        function togglePasswordVisibility() {
+            const passInput = document.getElementById("input-password");
+            const eyeIcon = document.getElementById("eye-icon");
+            if (passInput.type === "password") {
+                passInput.type = "text";
+                eyeIcon.innerText = "🙈";
             } else {
-                nextBtn.innerHTML = `Selanjutnya <i class="fa-solid fa-arrow-right ml-2"></i>`;
-                nextBtn.className = "px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-sm transition shadow-md shadow-indigo-100";
+                passInput.type = "password";
+                eyeIcon.innerText = "👁️";
             }
         }
 
-        function selectOption(optionIndex) {
-            userAnswers[currentQuestion] = optionIndex;
-            renderQuestion();
-            renderPalette();
+        function handleLogin(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById("input-name").value.trim();
+            const errorNameEl = document.getElementById("error-name");
+
+            if (nameInput.toLowerCase() !== "nur ainun") {
+                errorNameEl.classList.remove("hidden");
+                return;
+            }
+
+            errorNameEl.classList.add("hidden");
+
+            currentUser = "Nur Ainun";
+            selectedCount = parseInt(document.getElementById("select-count").value);
+            selectedDurationMinutes = parseInt(document.getElementById("select-time").value);
+
+            document.getElementById("display-username").innerText = currentUser;
+            document.getElementById("user-badge").classList.remove("hidden");
+
+            prepareQuiz();
+
+            document.getElementById("view-login").classList.add("hidden");
+            document.getElementById("view-quiz").classList.remove("hidden");
+
+            startTimer();
+            loadQuestion(0);
+        }
+
+        function prepareQuiz() {
+            // Shuffle master pool using Fisher-Yates algorithm
+            const shuffledPool = [...masterPool];
+            for (let i = shuffledPool.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledPool[i], shuffledPool[j]] = [shuffledPool[j], shuffledPool[i]];
+            }
+
+            activeQuestions = shuffledPool.slice(0, selectedCount);
+            userAnswers = {};
+            currentIndex = 0;
+            isGridOpen = false;
+            document.getElementById("number-grid-container").classList.add("hidden");
+            document.getElementById("nav-toggle-icon").innerText = "▼";
+            
+            timeRemainingSeconds = selectedDurationMinutes * 60;
+        }
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            updateTimerDisplay();
+
+            timerInterval = setInterval(() => {
+                timeRemainingSeconds--;
+                updateTimerDisplay();
+
+                if (timeRemainingSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    finishQuizDirectly();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timeRemainingSeconds / 60);
+            const secs = timeRemainingSeconds % 60;
+            const displayStr = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            document.getElementById("timer-display").innerText = displayStr;
+
+            const timerBadge = document.getElementById("timer-badge");
+            if (timeRemainingSeconds <= 60) {
+                timerBadge.className = "bg-red-100 text-red-800 px-3 py-1 rounded-lg text-xs font-bold border border-red-300 animate-pulse flex items-center space-x-1";
+            }
+        }
+
+        function toggleNumberGrid() {
+            isGridOpen = !isGridOpen;
+            const container = document.getElementById("number-grid-container");
+            const icon = document.getElementById("nav-toggle-icon");
+            if (isGridOpen) {
+                container.classList.remove("hidden");
+                icon.innerText = "▲";
+                renderNumberGrid();
+            } else {
+                container.classList.add("hidden");
+                icon.innerText = "▼";
+            }
+        }
+
+        function loadQuestion(index) {
+            currentIndex = index;
+            const qData = activeQuestions[index];
+
+            document.getElementById("quiz-progress-text").innerText = `Soal ${index + 1} dari ${activeQuestions.length}`;
+            document.getElementById("quiz-progress-top").innerText = `Soal ${index + 1} dari ${activeQuestions.length}`;
+            
+            let catName = "Metode Pendekatan";
+            if (index >= 3 && index < 8) catName = "Teknik Pelaksanaan";
+            if (index >= 8 && index < 10) catName = "Pengolahan Data";
+            if (index >= 10) catName = "Langkah Sistematis";
+            document.getElementById("quiz-category").innerText = catName;
+
+            document.getElementById("quiz-question").innerText = `${index + 1}. ${qData.q}`;
+
+            const optionsContainer = document.getElementById("quiz-options");
+            optionsContainer.innerHTML = "";
+
+            const letters = ['a', 'b', 'c', 'd', 'e'];
+            letters.forEach(letter => {
+                const optText = qData.options[letter];
+                if (!optText) return;
+
+                const isSelected = userAnswers[index] === letter;
+                
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = `w-full text-left p-4 rounded-xl border transition flex items-center space-x-3 text-sm md:text-base ${
+                    isSelected 
+                        ? 'border-[#4A7C59] bg-[#e8f0eb] text-[#2b3e34] font-semibold shadow-sm' 
+                        : 'border-gray-200 bg-white hover:bg-gray-50 text-gray-700'
+                }`;
+                
+                btn.innerHTML = `<span class="w-7 h-7 flex items-center justify-center rounded-full text-xs font-bold ${
+                    isSelected ? 'bg-[#4A7C59] text-white' : 'bg-gray-100 text-gray-600'
+                }">${letter.toUpperCase()}</span> <span>${optText}</span>`;
+
+                btn.onclick = () => selectOption(index, letter);
+                optionsContainer.appendChild(btn);
+            });
+
+            const btnPrev = document.getElementById("btn-prev");
+            const btnNext = document.getElementById("btn-next");
+
+            btnPrev.disabled = index === 0;
+
+            if (index === activeQuestions.length - 1) {
+                btnNext.innerText = "Selesai & Lihat Hasil ✨";
+                btnNext.className = "px-5 py-2 rounded-xl bg-[#385E43] text-white text-sm font-medium shadow hover:opacity-95";
+            } else {
+                btnNext.innerText = "Selanjutnya →";
+                btnNext.className = "px-5 py-2 rounded-xl matcha-gradient text-white text-sm font-medium shadow hover:opacity-95";
+            }
+
+            if (isGridOpen) {
+                renderNumberGrid();
+            }
+            updateRandomMotivation();
+        }
+
+        function selectOption(qIndex, letter) {
+            userAnswers[qIndex] = letter;
+            loadQuestion(qIndex);
         }
 
         function nextQuestion() {
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                renderQuestion();
+            if (currentIndex < activeQuestions.length - 1) {
+                loadQuestion(currentIndex + 1);
             } else {
-                if (confirm("Apakah Anda yakin ingin menyelesaikan ujian ini?")) {
-                    submitQuiz();
-                }
+                // Trigger confirmation modal before finishing
+                document.getElementById("confirm-modal").classList.remove("hidden");
             }
         }
 
         function prevQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                renderQuestion();
+            if (currentIndex > 0) {
+                loadQuestion(currentIndex - 1);
             }
         }
 
-        function togglePalette() {
-            const modal = document.getElementById('palette-modal');
-            modal.classList.toggle('hidden');
+        function closeConfirmModal() {
+            document.getElementById("confirm-modal").classList.add("hidden");
         }
 
-        function renderPalette() {
-            const palette = document.getElementById('question-palette');
-            palette.innerHTML = "";
-            questions.forEach((_, idx) => {
-                const isAnswered = userAnswers[idx] !== null;
-                const isCurrent = currentQuestion === idx;
-                const btn = document.createElement('button');
-                btn.type = "button";
-                btn.className = `h-10 rounded-xl font-semibold text-xs transition flex items-center justify-center ${
+        function confirmFinishQuiz() {
+            document.getElementById("confirm-modal").classList.add("hidden");
+            finishQuizDirectly();
+        }
+
+        function renderNumberGrid() {
+            const grid = document.getElementById("number-grid");
+            grid.innerHTML = "";
+
+            for (let i = 0; i < activeQuestions.length; i++) {
+                const isAnswered = userAnswers[i] !== undefined;
+                const isCurrent = i === currentIndex;
+
+                const numBtn = document.createElement("button");
+                numBtn.type = "button";
+                numBtn.innerText = i + 1;
+                numBtn.className = `w-9 h-9 rounded-lg text-xs font-bold transition flex items-center justify-center ${
                     isCurrent 
-                    ? 'ring-2 ring-indigo-600 ring-offset-2 ' + (isAnswered ? 'bg-indigo-600 text-white' : 'bg-white text-indigo-600 border border-indigo-600')
-                    : isAnswered 
-                    ? 'bg-indigo-600 text-white' 
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                        ? 'ring-2 ring-[#4A7C59] bg-[#4A7C59] text-white shadow' 
+                        : isAnswered 
+                            ? 'bg-[#c8e6c9] text-[#2e5c38]' 
+                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`;
-                btn.textContent = idx + 1;
-                btn.onclick = () => {
-                    currentQuestion = idx;
-                    renderQuestion();
-                    document.getElementById('palette-modal').classList.add('hidden');
-                };
-                palette.appendChild(btn);
-            });
+                numBtn.onclick = () => loadQuestion(i);
+                grid.appendChild(numBtn);
+            }
         }
 
-        function submitQuiz() {
-            clearInterval(timerInterval);
-            document.getElementById('quiz-section').classList.add('hidden');
-            document.getElementById('result-section').classList.remove('hidden');
+        function updateRandomMotivation() {
+            const randQuote = motivationQuotes[Math.floor(Math.random() * motivationQuotes.length)];
+            document.getElementById("motivation-text").innerText = randQuote;
+        }
+
+        function finishQuizDirectly() {
+            if (timerInterval) clearInterval(timerInterval);
 
             let correctCount = 0;
-            userAnswers.forEach((ans, idx) => {
-                if (ans === questions[idx].answer) {
+            activeQuestions.forEach((q, idx) => {
+                if (userAnswers[idx] === q.correct) {
                     correctCount++;
                 }
             });
 
-            const wrongCount = questions.length - correctCount;
-            const finalScore = Math.round((correctCount / questions.length) * 100);
+            const finalScore = Math.round((correctCount / activeQuestions.length) * 100);
 
-            document.getElementById('score-val').textContent = finalScore;
-            document.getElementById('correct-val').textContent = correctCount;
-            document.getElementById('wrong-val').textContent = wrongCount;
+            document.getElementById("view-quiz").classList.add("hidden");
+            document.getElementById("view-result").classList.remove("hidden");
 
-            buildReviewList();
-        }
+            document.getElementById("res-username").innerText = currentUser;
+            document.getElementById("res-score").innerText = finalScore;
+            document.getElementById("res-detail").innerText = `Benar ${correctCount} dari ${activeQuestions.length} soal (${finalScore}%)`;
 
-        function buildReviewList() {
-            const listContainer = document.getElementById('review-list');
-            listContainer.innerHTML = "";
+            // Score Appreciation or Encouragement Message
+            const appreciationBox = document.getElementById("score-appreciation-box");
+            if (finalScore >= 80) {
+                appreciationBox.className = "mb-6 p-4 rounded-xl text-xs md:text-sm font-medium bg-green-50 border-green-200 text-green-800";
+                appreciationBox.innerHTML = `🌟 <strong>Luar Biasa, Nur Ainun!</strong> Skor yang sangat memukau! Penguasaan materi penelitian sosialmu sudah sangat matang dan hebat! Pertahankan prestasimu! 🎉`;
+            } else if (finalScore >= 60) {
+                appreciationBox.className = "mb-6 p-4 rounded-xl text-xs md:text-sm font-medium bg-[#f0f7f2] border-[#d3e2d6] text-[#2f4f38]";
+                appreciationBox.innerHTML = `🌿 <strong>Kerja Bagus, Nur Ainun!</strong> Hasil yang baik! Sedikit lagi latihan dan review pembahasan di bawah, kamu pasti bisa menguasainya dengan sempurna! Semangat! 💪`;
+            } else {
+                appreciationBox.className = "mb-6 p-4 rounded-xl text-xs md:text-sm font-medium bg-amber-50 border-amber-200 text-amber-800";
+                appreciationBox.innerHTML = `🌱 <strong>Jangan Menyerah, Nur Ainun!</strong> Setiap proses belajar butuh ketekunan. Yuk pelajari kembali pembahasan di bawah ini dengan santai, kamu pasti bisa jauh lebih baik di percobaan berikutnya! ✨`;
+            }
 
-            questions.forEach((q, idx) => {
+            const discList = document.getElementById("discussion-list");
+            discList.innerHTML = "";
+
+            activeQuestions.forEach((q, idx) => {
                 const userAns = userAnswers[idx];
-                const isCorrect = userAns === q.answer;
-                const card = document.createElement('div');
-                card.className = `bg-white p-6 rounded-2xl border ${isCorrect ? 'border-emerald-200' : 'border-rose-200'} shadow-sm space-y-3`;
+                const isCorrect = userAns === q.correct;
+
+                const item = document.createElement("div");
+                item.className = `p-4 rounded-xl border ${isCorrect ? 'border-green-200 bg-green-50/50' : 'border-red-200 bg-red-50/50'}`;
                 
                 let optionsHtml = '';
-                q.options.forEach((opt, oIdx) => {
-                    let badgeClass = "text-slate-600 bg-slate-50 border-slate-200";
-                    if (oIdx === q.answer) {
-                        badgeClass = "text-emerald-700 bg-emerald-50 border-emerald-300 font-semibold";
-                    } else if (oIdx === userAns && !isCorrect) {
-                        badgeClass = "text-rose-700 bg-rose-50 border-rose-300 line-through";
-                    }
-                    optionsHtml += `<div class="p-2.5 rounded-lg border text-xs ${badgeClass}">${String.fromCharCode(65 + oIdx)}. ${opt}</div>`;
+                ['a', 'b', 'c', 'd', 'e'].forEach(l => {
+                    if(!q.options[l]) return;
+                    let badgeClass = "text-gray-600";
+                    if (l === q.correct) badgeClass = "font-bold text-green-700 bg-green-100 px-1.5 py-0.5 rounded";
+                    else if (l === userAns && !isCorrect) badgeClass = "font-bold text-red-600 bg-red-100 px-1.5 py-0.5 rounded line-through";
+
+                    optionsHtml += `<div class="text-xs md:text-sm py-0.5 ${badgeClass}">${l.toUpperCase()}. ${q.options[l]}</div>`;
                 });
 
-                card.innerHTML = `
-                    <div class="flex justify-between items-start">
-                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Soal ${idx + 1}</span>
-                        <span class="text-xs px-2.5 py-1 rounded-full font-semibold ${isCorrect ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}">
-                            ${isCorrect ? 'Benar' : 'Salah / Kosong'}
+                item.innerHTML = `
+                    <div class="flex items-start justify-between mb-2">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded ${isCorrect ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'}">
+                            Soal ${idx + 1} - ${isCorrect ? 'Benar ✔' : 'Salah ❌'}
                         </span>
+                        <span class="text-xs text-gray-500">Jawaban Anda: <b>${userAns ? userAns.toUpperCase() : '-'}</b> | Kunci: <b>${q.correct.toUpperCase()}</b></span>
                     </div>
-                    <p class="font-semibold text-slate-900 text-sm">${q.q}</p>
-                    <div class="space-y-1.5">${optionsHtml}</div>
-                    <div class="bg-indigo-50/50 p-3 rounded-xl border border-indigo-100 text-xs text-indigo-900 mt-2 space-y-1">
-                        <strong class="font-semibold text-indigo-700 block mb-1">Pembahasan / Explanation:</strong>
-                        <div>${q.explanation}</div>
+                    <p class="text-sm font-semibold text-[#2b3e34] mb-2">${q.q}</p>
+                    <div class="space-y-1 mb-3 pl-2 border-l-2 border-gray-300">
+                        ${optionsHtml}
+                    </div>
+                    <div class="text-xs bg-white p-3 rounded-lg border border-gray-200 text-gray-700">
+                        <strong class="text-[#4A7C59]">💡 Pembahasan:</strong> ${q.discussion}
                     </div>
                 `;
-                listContainer.appendChild(card);
+                discList.appendChild(item);
             });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function showReview() {
-            document.getElementById('result-section').classList.add('hidden');
-            document.getElementById('review-section').classList.remove('hidden');
-        }
-
-        function backToResult() {
-            document.getElementById('review-section').classList.add('hidden');
-            document.getElementById('result-section').classList.remove('hidden');
+        function restartQuiz() {
+            if (timerInterval) clearInterval(timerInterval);
+            document.getElementById("view-result").classList.add("hidden");
+            document.getElementById("view-password").classList.remove("hidden");
+            document.getElementById("input-password").value = "";
+            document.getElementById("input-name").value = "";
+            document.getElementById("user-badge").classList.add("hidden");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
 </html>
-```
