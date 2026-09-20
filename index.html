@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Latihan Soal - Nur Ainun</title>
+    <title>Website Latihan Soal Penelitian Sosial</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -21,20 +21,23 @@
 
     <header class="bg-[#4A7C59] text-white shadow-md py-4 px-6">
         <div class="max-w-4xl mx-auto flex justify-between items-center">
-            <h1 class="text-lg md:text-xl font-bold tracking-wide">🌿 Latihan Soal Penelitian Sosial</h1>
-            <div id="user-badge" class="hidden bg-[#385E43] px-3 py-1 rounded-full text-xs md:text-sm font-medium">
-                👤 <span id="display-username">Nur Ainun</span>
+            <h1 class="text-base md:text-xl font-bold tracking-wide">🌿 Latihan Soal Penelitian Sosial</h1>
+            <div class="flex items-center space-x-2">
+                <div id="user-badge" class="hidden bg-[#385E43] px-3 py-1 rounded-full text-xs md:text-sm font-medium">
+                    👤 <span id="display-username">Nur Ainun</span>
+                </div>
             </div>
         </div>
     </header>
 
     <main class="max-w-md w-full mx-auto p-4 md:p-6 my-auto">
 
+        <!-- PASSWORD VIEW -->
         <div id="view-password" class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#d3e2d6]">
             <div class="text-center mb-6">
                 <div class="inline-block p-3 bg-[#e8f0eb] rounded-full text-[#4A7C59] mb-3 text-3xl">🔒</div>
                 <h2 class="text-2xl font-bold text-[#2b3e34]">Akses Terproteksi</h2>
-                <p class="text-sm text-gray-600 mt-1">Silakan masukkan password rahasia untuk melanjutkan ke halaman latihan.</p>
+                <p class="text-sm text-gray-600 mt-1">Silakan masukkan password rahasia untuk melanjutkan.</p>
             </div>
 
             <form onsubmit="handlePasswordSubmit(event)" class="space-y-5">
@@ -56,11 +59,12 @@
             </form>
         </div>
 
+        <!-- LOGIN / CONFIG VIEW -->
         <div id="view-login" class="hidden bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#d3e2d6]">
             <div class="text-center mb-6">
                 <div class="inline-block p-3 bg-[#e8f0eb] rounded-full text-[#4A7C59] mb-3 text-3xl">🍵</div>
                 <h2 class="text-2xl font-bold text-[#2b3e34]">Selamat Datang!</h2>
-                <p class="text-sm text-gray-600 mt-1">Masukkan nama lengkap, pilih jumlah soal, dan durasi waktu untuk memulai.</p>
+                <p class="text-sm text-gray-600 mt-1">Masukkan nama, pilih materi, jumlah soal, dan durasi waktu untuk memulai.</p>
             </div>
 
             <form onsubmit="handleLogin(event)" class="space-y-4">
@@ -69,6 +73,16 @@
                     <input type="text" id="input-name" required placeholder="Masukkan nama Anda..."
                         class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#4A7C59] text-sm">
                     <p id="error-name" class="text-xs text-red-500 mt-1 hidden">Akses ditolak! Website ini khusus untuk Nur Ainun.</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Pilih Materi Soal</label>
+                    <select id="select-material" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#4A7C59] text-sm bg-white">
+                        <option value="all">🌟 Semua Materi (Gabungan)</option>
+                        <option value="1">📊 Materi 1: Tiga Metode Pendekatan Utama</option>
+                        <option value="2">🛠️ Materi 2: Teknik Pelaksanaan Penelitian</option>
+                        <option value="3">📝 Materi 3: Lima Langkah Sistematis Penelitian</option>
+                    </select>
                 </div>
 
                 <div>
@@ -99,6 +113,7 @@
             </form>
         </div>
 
+        <!-- QUIZ VIEW -->
         <div id="view-quiz" class="hidden space-y-4 max-w-2xl w-full mx-auto">
             
             <div class="bg-white rounded-2xl shadow-md p-4 border border-[#d3e2d6]">
@@ -116,30 +131,24 @@
                         <span id="quiz-progress-top" class="text-xs font-bold text-[#4A7C59]">Soal 1 dari 10</span>
                     </div>
                 </div>
-                <!-- Number grid hidden initially -->
                 <div id="number-grid-container" class="hidden mt-3 pt-3 border-t border-gray-100">
                     <p class="text-xs font-semibold text-gray-600 mb-2">Klik nomor untuk melompat ke soal:</p>
-                    <div id="number-grid" class="flex flex-wrap gap-2">
-                        <!-- Grid generated via JS -->
-                    </div>
+                    <div id="number-grid" class="flex flex-wrap gap-2"></div>
                 </div>
             </div>
 
             <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#d3e2d6]">
                 <div class="flex justify-between items-center mb-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                     <span id="quiz-progress-text">Soal 1 dari 10</span>
-                    <span id="quiz-category" class="bg-[#e8f0eb] text-[#4A7C59] px-2.5 py-1 rounded-md">Metode Pendekatan</span>
+                    <span id="quiz-category" class="bg-[#e8f0eb] text-[#4A7C59] px-2.5 py-1 rounded-md">Materi</span>
                 </div>
 
                 <h3 id="quiz-question" class="text-base md:text-lg font-semibold text-[#2b3e34] mb-5 leading-relaxed">
                     Pertanyaan akan muncul di sini...
                 </h3>
 
-                <div id="quiz-options" class="space-y-3">
-                    <!-- Options injected via JS -->
-                </div>
+                <div id="quiz-options" class="space-y-3"></div>
 
-                <!-- Navigation Controls -->
                 <div class="flex justify-between items-center mt-8 pt-4 border-t border-gray-100">
                     <button id="btn-prev" onclick="prevQuestion()" class="px-4 py-2 rounded-xl border border-gray-300 text-gray-700 text-sm font-medium hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed">
                         ← Sebelumnya
@@ -150,7 +159,6 @@
                 </div>
             </div>
 
-            <!-- Motivation Banner -->
             <div class="bg-[#e2ede4] border-l-4 border-[#4A7C59] p-3 md:p-4 rounded-r-xl shadow-sm">
                 <p id="motivation-text" class="text-xs md:text-sm font-medium text-[#2f4f38] italic">
                     "Semangat terus Nur Ainun! Setiap langkah kecil membawamu lebih dekat pada kesuksesan! ✨"
@@ -159,6 +167,7 @@
 
         </div>
 
+        <!-- RESULT VIEW -->
         <div id="view-result" class="hidden space-y-6 max-w-2xl w-full mx-auto">
             <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 text-center border border-[#d3e2d6]">
                 <div class="inline-block p-4 bg-[#e8f0eb] rounded-full text-[#4A7C59] text-4xl mb-3">🏆</div>
@@ -171,10 +180,7 @@
                     <p id="res-detail" class="text-xs text-gray-600">Benar 17 dari 20 soal</p>
                 </div>
 
-                <!-- Score Appreciation / Encouragement Banner -->
-                <div id="score-appreciation-box" class="mb-6 p-4 rounded-xl text-xs md:text-sm font-medium border">
-                    <!-- Injected via JS -->
-                </div>
+                <div id="score-appreciation-box" class="mb-6 p-4 rounded-xl text-xs md:text-sm font-medium border"></div>
 
                 <div>
                     <button onclick="restartQuiz()" class="matcha-gradient text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:opacity-95 text-sm">
@@ -185,16 +191,15 @@
 
             <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#d3e2d6]">
                 <h3 class="text-lg font-bold text-[#2b3e34] mb-4 pb-2 border-b border-gray-100">📖 Pembahasan Jawaban Lengkap</h3>
-                <div id="discussion-list" class="space-y-6">
-                    <!-- Discussions injected via JS -->
-                </div>
+                <div id="discussion-list" class="space-y-6"></div>
             </div>
         </div>
 
     </main>
 
+    <!-- CONFIRMATION MODAL -->
     <div id="confirm-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full border border-[#d3e2d6] text-center space-y-4 animate-scale-up">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full border border-[#d3e2d6] text-center space-y-4">
             <div class="inline-block p-3 bg-[#e8f0eb] rounded-full text-[#4A7C59] text-2xl">❓</div>
             <h3 class="text-lg font-bold text-[#2b3e34]">Yakin Ingin Menyelesaikan?</h3>
             <p class="text-xs md:text-sm text-gray-600">Pastikan semua soal telah terjawab dengan teliti sebelum melihat hasil akhir dan pembahasan.</p>
@@ -214,263 +219,677 @@
     </footer>
 
     <script>
-        const rawQuestionPool = [
+        const material1Pool = [
             {
-                q: "Metode pendekatan utama yang terstruktur sejak awal dan menggunakan data berupa angka serta analisis statistik disebut...",
-                options: {
-                    a: "Metode Kualitatif",
-                    b: "Metode Kuantitatif",
-                    c: "Mixed Methods",
-                    d: "Metode Deskriptif",
-                    e: "Metode Historis"
-                },
+                q: "Metode pendekatan utama yang terstruktur sejak awal dengan data berupa angka serta analisis statistik adalah...",
+                options: { a: "Kualitatif", b: "Kuantitatif", c: "Campuran", d: "Deskriptif", e: "Historis" },
                 correct: "b",
-                discussion: "Kuantitatif adalah metode pendekatan yang terstruktur sejak awal dengan menggunakan data angka dan dianalisis secara statistik (contoh: survei, eksperimen, korelasional)."
+                discussion: "Kuantitatif adalah metode pendekatan yang terstruktur sejak awal dengan menggunakan data angka dan dianalisis secara statistik."
             },
             {
                 q: "Berikut ini yang merupakan contoh dari pendekatan metode Kualitatif adalah...",
-                options: {
-                    a: "Survei dan Eksperimen",
-                    b: "Korelasional dan Kausal Komparatif",
-                    c: "Studi Kasus dan Etnografi",
-                    d: "Eksperimen dan Eksploratif",
-                    e: "Tabulasi Data Angka"
-                },
+                options: { a: "Survei", b: "Eksperimen", c: "Studi kasus", d: "Korelasional", e: "Kausal komparatif" },
                 correct: "c",
                 discussion: "Kualitatif bertujuan mencari pemahaman mendalam tentang realitas sosial, dengan contoh nyata meliputi studi kasus, etnografi, fenomenologi, historis, dan grounded theory."
             },
             {
-                q: "Kombinasi antara metode kuantitatif dan kualitatif untuk menutupi kelemahan masing-masing metode disebut...",
-                options: {
-                    a: "Metode Gabungan (Mixed Methods)",
-                    b: "Metode Tunggal",
-                    c: "Metode Sampel Acak",
-                    d: "Reduksi Data",
-                    e: "Coding Data"
-                },
-                correct: "a",
-                discussion: "Metode Gabungan (Mixed Methods) adalah kombinasi metode kuantitatif dan kualitatif baik bersamaan maupun bertahap guna memperoleh hasil penelitian yang lebih komprehensif."
-            },
-            {
-                q: "Teknik penentuan sampel (subjek penelitian) yang mengutamakan keterwakilan populasi agar dapat digeneralisasi disebut...",
-                options: {
-                    a: "Purposive Sampling",
-                    b: "Non-probabilitas",
-                    c: "Probabilitas (Acak)",
-                    d: "Snowball Sampling",
-                    e: "Accidental Sampling"
-                },
-                correct: "c",
-                discussion: "Probabilitas (Acak) mengutamakan keterwakilan populasi agar dapat digeneralisasi dengan contoh teknik random sampling."
-            },
-            {
-                q: "Teknik penentuan sampel yang memiliki tujuan khusus atau kelompok tertentu saja, misalnya purposive sampling, termasuk dalam...",
-                options: {
-                    a: "Probabilitas",
-                    b: "Non-probabilitas (Tidak Acak)",
-                    c: "Metode Kuantitatif Murni",
-                    d: "Metode Statistik",
-                    e: "Random Sampling"
-                },
+                q: "Kombinasi antara metode kuantitatif dan kualitatif untuk saling melengkapi kelemahan masing-masing disebut...",
+                options: { a: "Metode tunggal", b: "Metode gabungan", c: "Metode sampel", d: "Reduksi data", e: "Coding data" },
                 correct: "b",
-                discussion: "Non-probabilitas (Tidak Acak) memiliki tujuan khusus atau kelompok tertentu saja, seperti purposive sampling."
+                discussion: "Metode Gabungan (Mixed Methods) adalah kombinasi metode kuantitatif dan kualitatif guna memperoleh hasil yang lebih komprehensif."
             },
             {
-                q: "Instrumen pencari fakta berupa tanya jawab langsung yang dapat dilakukan secara terstruktur maupun tidak terstruktur dinamakan...",
-                options: {
-                    a: "Observasi",
-                    b: "Angket",
-                    c: "Dokumentasi",
-                    d: "Wawancara",
-                    e: "Coding"
-                },
+                q: "Apa fokus utama dari pendekatan Kuantitatif dalam penelitian sosial?",
+                options: { a: "Angka statistik", b: "Makna naratif", c: "Wawancara bebas", d: "Studi literatur", e: "Observasi pasif" },
+                correct: "a",
+                discussion: "Pendekatan kuantitatif berfokus pada angka dan statistik."
+            },
+            {
+                q: "Apa fokus utama dari pendekatan Kualitatif dalam penelitian sosial?",
+                options: { a: "Analisis tabel", b: "Makna mendalam", c: "Survei nasional", d: "Korelasi variabel", e: "Tabulasi angka" },
+                correct: "b",
+                discussion: "Kualitatif berfokus pada makna dan deskripsi mendalam realitas sosial."
+            },
+            {
+                q: "Manakah di bawah ini yang bukan merupakan metode pendekatan utama dalam penelitian sosial?",
+                options: { a: "Kuantitatif", b: "Kualitatif", c: "Gabungan", d: "Eksperimen hampa", e: "Ketiga benar" },
                 correct: "d",
-                discussion: "Wawancara adalah teknik pengumpulan data berupa tanya jawab langsung yang bisa bersifat terstruktur atau tidak terstruktur."
+                discussion: "Tiga pendekatan utama yang diakui adalah Kuantitatif, Kualitatif, dan Gabungan."
             },
             {
-                q: "Pengamatan di lapangan yang dapat dilakukan secara partisipasi maupun non-partisipasi disebut...",
-                options: {
-                    a: "Wawancara",
-                    b: "Observasi",
-                    c: "Angket (Kuesioner)",
-                    d: "Dokumentasi",
-                    e: "Tabulating"
-                },
+                q: "Pendekatan penelitian yang menuntut peneliti memilih pisau analisis yang tepat berdasarkan jenis data adalah...",
+                options: { a: "Metode penelitian", b: "Statistik murni", c: "Wawancara", d: "Observasi", e: "Tabulasi" },
+                correct: "a",
+                discussion: "Peneliti harus memilih pisau analisis yang tepat berdasarkan jenis data dan tujuan penelitiannya dalam pendekatan metode penelitian sosial."
+            },
+            {
+                q: "Manakah contoh metode yang termasuk dalam kelompok Kuantitatif?",
+                options: { a: "Etnografi", b: "Survei", c: "Fenomenologi", d: "Grounded theory", e: "Analisis teks" },
+                correct: "b",
+                discussion: "Contoh kuantitatif mencakup survei, eksperimen, korelasional, kausal komparatif, dan eksploratif."
+            },
+            {
+                q: "Pendekatan yang mengutamakan kedalaman narasi ketimbang keluasan generalisasi adalah...",
+                options: { a: "Kuantitatif", b: "Kualitatif", c: "Statistik", d: "Komparatif", e: "Eksperimental" },
+                correct: "b",
+                discussion: "Kualitatif mengutamakan kedalaman data naratif dan makna."
+            },
+            {
+                q: "Manakah yang merupakan bentuk penerapan pendekatan metode gabungan?",
+                options: { a: "Angket saja", b: "Wawancara tunggal", c: "Sekuensial bertahap", d: "Observasi pasif", e: "Studi arsip" },
+                correct: "c",
+                discussion: "Metode gabungan dapat dilakukan bersamaan atau bertahap (sekuensial)."
+            },
+            {
+                q: "Sifat data yang dikumpulkan pada awal pendekatan kuantitatif umumnya bersifat...",
+                options: { a: "Terstruktur", b: "Spontan", c: "Naratif bebas", d: "Abstraksi penuh", e: "Emosional" },
+                correct: "a",
+                discussion: "Kuantitatif terstruktur sejak awal perencanaan."
+            },
+            {
+                q: "Tujuan utama pemilihan pendekatan metode penelitian yang tepat adalah...",
+                options: { a: "Validitas data", b: "Mempercepat waktu", c: "Mengurangi responden", d: "Menghindari teori", e: "Menambah biaya" },
+                correct: "a",
+                discussion: "Pemilihan pendekatan yang tepat memastikan data valid dan dapat dipertanggungjawabkan."
+            },
+            {
+                q: "Penelitian sosial yang mengukur hubungan antarvariabel dengan angka murni menggunakan...",
+                options: { a: "Pendekatan Kuantitatif", b: "Pendekatan Kualitatif", c: "Studi kasus", d: "Etnografi", e: "Fenomenologi" },
+                correct: "a",
+                discussion: "Pengukuran hubungan antarvariabel dengan angka murni merupakan ciri pendekatan kuantitatif."
+            },
+            {
+                q: "Ciri khas dari pendekatan kualitatif dalam melihat fenomena sosial adalah...",
+                options: { a: "Angka mutlak", b: "Pemahaman utuh", c: "Korelasi statistik", d: "Survei massal", e: "Tabulasi silang" },
+                correct: "b",
+                discussion: "Kualitatif menekankan pemahaman utuh dan menyeluruh terhadap realitas sosial."
+            },
+            {
+                q: "Manakah metode yang termasuk ke dalam ranah pendekatan Kualitatif?",
+                options: { a: "Etnografi", b: "Korelasional", c: "Eksperimen", d: "Survei", e: "Kausal" },
+                correct: "a",
+                discussion: "Etnografi adalah salah satu metode utama dalam pendekatan kualitatif."
+            },
+            {
+                q: "Pendekatan mana yang menggunakan analisis statistik untuk menguji hipotesis?",
+                options: { a: "Kualitatif", b: "Kuantitatif", c: "Gabungan bertahap", d: "Deskriptif murni", e: "Studi pustaka" },
+                correct: "b",
+                discussion: "Kuantitatif menggunakan statistik untuk menguji hipotesis yang telah ditetapkan."
+            },
+            {
+                q: "Kombinasi metode campuran sangat berguna ketika peneliti ingin...",
+                options: { a: "Menghapus data", b: "Memperkaya temuan", c: "Mempercepat waktu", d: "Mengurangi sampel", e: "Menghindari responden" },
+                correct: "b",
+                discussion: "Metode gabungan memperkaya temuan dengan memadukan keunggulan kuantitatif dan kualitatif."
+            },
+            {
+                q: "Penelitian yang berfokus pada makna di balik tindakan sosial subjek menggunakan pendekatan...",
+                options: { a: "Kuantitatif", b: "Kualitatif", c: "Statistika", d: "Korelasional", e: "Komparatif" },
+                correct: "b",
+                discussion: "Makna di balik tindakan sosial dikaji melalui pendekatan kualitatif."
+            },
+            {
+                q: "Pendekatan yang menekankan objektivitas ketat melalui angka dan pengukuran adalah...",
+                options: { a: "Kuantitatif", b: "Kualitatif", c: "Naratif", d: "Fenomenologis", e: "Hermeneutika" },
+                correct: "a",
+                discussion: "Kuantitatif menekankan pengukuran objektif dan pengujian terstruktur."
+            },
+            {
+                q: "Manakah yang menggambarkan sifat dari data kualitatif?",
+                options: { a: "Angka tabel", b: "Deskripsi kata", c: "Koefisien regresi", d: "Persentase", e: "Nilai z-score" },
+                correct: "b",
+                discussion: "Data kualitatif disajikan dalam bentuk deskripsi kata-kata dan narasi."
+            },
+            {
+                q: "Pendekatan penelitian yang paling cocok untuk menguji sebab-akibat antarvariabel adalah...",
+                options: { a: "Kuantitatif", b: "Kualitatif", c: "Studi kasus", d: "Etnografi", e: "Grounded theory" },
+                correct: "a",
+                discussion: "Uji sebab-akibat (kausalitas) diuji menggunakan pendekatan kuantitatif."
+            },
+            {
+                q: "Pendekatan yang memberikan ruang fleksibilitas tinggi bagi peneliti saat berada di lapangan adalah...",
+                options: { a: "Kuantitatif", b: "Kualitatif", c: "Statistika", d: "Survei", e: "Eksperimen" },
+                correct: "b",
+                discussion: "Kualitatif lebih fleksibel dan dapat berkembang sesuai dinamika di lapangan."
+            },
+            {
+                q: "Kelebihan utama dari pendekatan kuantitatif adalah kemampuannya dalam...",
+                options: { a: "Generalisasi luas", b: "Menjelaskan emosi", c: "Kedalaman makna", d: "Eksplorasi budaya", e: "Wawancara bebas" },
+                correct: "a",
+                discussion: "Kuantitatif unggul dalam hal generalisasi populasi yang luas."
+            },
+            {
+                q: "Metode gabungan sekuensial menjelaskan bahwa pengumpulan data dilakukan secara...",
+                options: { a: "Bersamaan", b: "Bertahap", c: "Acak total", d: "Tanpa rencana", e: "Sekali jalan" },
+                correct: "b",
+                discussion: "Sekuensial berarti dilakukan secara bertahap (bisa kuantitatif dulu baru kualitatif atau sebaliknya)."
+            },
+            {
+                q: "Manakah yang merupakan bentuk fokus kajian dari pendekatan kuantitatif?",
+                options: { a: "Variabel terukur", b: "Pengalaman hidup", c: "Interaksi simbolik", d: "Budaya lokal", e: "Naratif subjek" },
+                correct: "a",
+                discussion: "Kuantitatif berfokus pada variabel yang dapat diukur secara sistematis."
+            },
+            {
+                q: "Pendekatan yang tidak menggunakan hipotesis kaku pada awal penelitian adalah...",
+                options: { a: "Kuantitatif", b: "Kualitatif", c: "Korelasional", d: "Eksperimen", e: "Kausal" },
+                correct: "b",
+                discussion: "Kualitatif bersifat terbuka dan tidak mengharuskan hipotesis kaku di awal."
+            },
+            {
+                q: "Jika peneliti ingin meneliti tingkat kepuasan masyarakat dengan menyebar angket berangka, pendekatan yang digunakan adalah...",
+                options: { a: "Kuantitatif", b: "Kualitatif", c: "Gabungan bebas", d: "Studi arsip", e: "Observasi pasif" },
+                correct: "a",
+                discussion: "Angket dengan skala angka termasuk pendekatan kuantitatif."
+            },
+            {
+                q: "Analisis statistik deskriptif dan inferensial digunakan dalam pendekatan...",
+                options: { a: "Kuantitatif", b: "Kualitatif", c: "Studi kasus", d: "Etnografi", e: "Fenomenologi" },
+                correct: "a",
+                discussion: "Analisis statistik deskriptif dan inferensial merupakan ciri khas kuantitatif."
+            },
+            {
+                q: "Pendekatan yang memadukan kekuatan angka dan kekuatan narasi disebut...",
+                options: { a: "Kuantitatif", b: "Kualitatif", c: "Metode Gabungan", d: "Studi pustaka", e: "Observasi" },
+                correct: "c",
+                discussion: "Metode gabungan memadukan keunggulan data angka dan narasi."
+            },
+            {
+                q: "Manakah yang menjadi landasan utama pemilihan pendekatan kuantitatif?",
+                options: { a: "Positivisme", b: "Fenomenologis", c: "Interpretatif", d: "Etnografis", e: "Konstruktivis" },
+                correct: "a",
+                discussion: "Kuantitatif berakar dari paradigma positivisme."
+            },
+            {
+                q: "Landasan utama dari pendekatan kualitatif dalam memandang realitas sosial adalah...",
+                options: { a: "Positivisme", b: "Interpretatif", c: "Statistik murni", d: "Angka mutlak", e: "Eksperimen ketat" },
+                correct: "b",
+                discussion: "Kualitatif berakar dari paradigma interpretatif / konstruktivis."
+            },
+            {
+                q: "Pendekatan penelitian yang paling tepat untuk menyusun sensus penduduk nasional adalah...",
+                options: { a: "Kuantitatif", b: "Kualitatif", c: "Studi kasus", d: "Grounded theory", e: "Etnografi" },
+                correct: "a",
+                discussion: "Sensus penduduk nasional menggunakan pendekatan kuantitatif survei."
+            },
+            {
+                q: "Apa tujuan utama dari pemilihan metode pendekatan penelitian sosial?",
+                options: { a: "Menjawab rumusan masalah", b: "Menghabiskan anggaran", c: "Mempersingkat waktu", d: "Menghindari responden", e: "Mengurangi teori" },
+                correct: "a",
+                discussion: "Pemilihan pendekatan bertujuan agar rumusan masalah dan tujuan penelitian dapat terjawab."
+            },
+            {
+                q: "Manakah yang menunjukkan contoh penelitian dengan pendekatan kuantitatif?",
+                options: { a: "Pengaruh intensitas belajar terhadap nilai", b: "Makna ritual adat perkawinan", c: "Kehidupan sehari-hari pemulung", d: "Interaksi sosial di terminal", e: "Pengalaman trauma psikologis" },
+                correct: "a",
+                discussion: "Pengaruh antarvariabel dengan ukuran nilai adalah contoh kuantitatif."
+            },
+            {
+                q: "Manakah yang menunjukkan contoh penelitian dengan pendekatan kualitatif?",
+                options: { a: "Analisis makna simbolik upacara adat", b: "Survei kepemilikan kendaraan bermotor", c: "Eksperimen obat penurun demam", d: "Korelasi pendapatan dan konsumsi", e: "Statistik pertumbuhan penduduk" },
+                correct: "a",
+                discussion: "Makna simbolik upacara adat dikaji secara kualitatif."
+            },
+            {
+                q: "Pendekatan penelitian manakah yang menghasilkan data berupa angka persentase?",
+                options: { a: "Kuantitatif", b: "Kualitatif", c: "Fenomenologi", d: "Studi historis", e: "Etnografi" },
+                correct: "a",
+                discussion: "Angka persentase dihasilkan dari penelitian kuantitatif."
+            },
+            {
+                q: "Pendekatan yang menekankan interaksi mendalam antara peneliti dan informan adalah...",
+                options: { a: "Kualitatif", b: "Kuantitatif", c: "Survei", d: "Eksperimen", e: "Korelasional" },
+                correct: "a",
+                discussion: "Kualitatif menuntut kedekatan dan interaksi mendalam dengan informan."
+            },
+            {
+                q: "Mengapa pendekatan gabungan sering dipilih dalam riset modern?",
+                options: { a: "Menutup kelemahan metode", b: "Mempermudah penulisan", c: "Menghindari analisis data", d: "Mengurangi jumlah bab", e: "Menghilangkan teori" },
+                correct: "a",
+                discussion: "Metode gabungan dipilih untuk saling menutupi kelemahan masing-masing metode."
+            },
+            {
+                q: "Manakah yang bukan merupakan bagian dari metode kuantitatif?",
+                options: { a: "Etnografi mendalam", b: "Survei nasional", c: "Eksperimen lab", d: "Korelasional", e: "Kausal komparatif" },
+                correct: "a",
+                discussion: "Etnografi adalah metode kualitatif, bukan kuantitatif."
+            },
+            {
+                q: "Penelitian sosial yang menguji teori melalui pembuktian hipotesis numerik termasuk...",
+                options: { a: "Kuantitatif", b: "Kualitatif", c: "Studi kasus", d: "Fenomenologi", e: "Analisis teks" },
+                correct: "a",
+                discussion: "Pengujian hipotesis numerik adalah inti dari pendekatan kuantitatif."
+            }
+        ];
+
+        const material2Pool = [
+            {
+                q: "Teknik penentuan sampel yang mengutamakan keterwakilan populasi agar dapat digeneralisasi disebut...",
+                options: { a: "Purposive", b: "Nonprobabilitas", c: "Probabilitas", d: "Snowball", e: "Accidental" },
+                correct: "c",
+                discussion: "Probabilitas (Acak) mengutamakan keterwakilan populasi agar dapat digeneralisasi dengan teknik random sampling."
+            },
+            {
+                q: "Teknik penentuan sampel yang memiliki tujuan khusus atau kelompok tertentu saja dinamakan...",
+                options: { a: "Probabilitas", b: "Nonprobabilitas", c: "Random", d: "Statistik", e: "Sensus umum" },
+                correct: "b",
+                discussion: "Non-probabilitas (Tidak Acak) memiliki tujuan khusus atau kelompok tertentu saja seperti purposive sampling."
+            },
+            {
+                q: "Instrumen pencari fakta berupa tanya jawab langsung yang dapat terstruktur maupun tidak terstruktur dinamakan...",
+                options: { a: "Observasi", b: "Angket", c: "Dokumentasi", d: "Wawancara", e: "Coding" },
+                correct: "d",
+                discussion: "Wawancara adalah teknik pengumpulan data berupa tanya jawab langsung."
+            },
+            {
+                q: "Pengamatan di lapangan yang dapat dilakukan secara partisipasi maupun nonpartisipasi disebut...",
+                options: { a: "Wawancara", b: "Observasi", c: "Kuesioner", d: "Dokumentasi", e: "Tabulating" },
                 correct: "b",
                 discussion: "Observasi adalah pengamatan langsung di lapangan baik secara partisipasi maupun non-partisipasi."
             },
             {
                 q: "Analisis arsip, buku, foto, atau artefak dalam instrumen pengumpulan data termasuk dalam...",
-                options: {
-                    a: "Observasi",
-                    b: "Wawancara",
-                    c: "Dokumentasi",
-                    d: "Angket",
-                    e: "Reduksi Data"
-                },
+                options: { a: "Observasi", b: "Wawancara", c: "Dokumentasi", d: "Angket", e: "Reduksi data" },
                 correct: "c",
-                discussion: "Dokumentasi melibatkan analisis arsip, buku, foto, atau artefak untuk melengkapi fakta penelitian."
-            },
-            {
-                q: "Alur pengolahan data kuantitatif yang benar adalah...",
-                options: {
-                    a: "Tabulating → Coding → Editing",
-                    b: "Editing (Pemeriksaan) → Coding (Pemberian Kode) → Tabulating (Memasukkan ke tabel)",
-                    c: "Reduksi Data → Penyajian Data → Penarikan Kesimpulan",
-                    d: "Coding → Tabulating → Editing",
-                    e: "Penyajian Data → Reduksi Data → Kesimpulan"
-                },
-                correct: "b",
-                discussion: "Alur kuantitatif dimulai dari Editing (Pemeriksaan), dilanjutkan Coding (Pemberian Kode), dan terakhir Tabulating (Memasukkan ke tabel)."
-            },
-            {
-                q: "Alur pengolahan data kualitatif mencakup tahapan berikut:",
-                options: {
-                    a: "Editing → Coding → Tabulating",
-                    b: "Survei → Eksperimen → Statistik",
-                    c: "Reduksi Data (Penyaringan data penting) → Penyajian Data (Teks/Bagan) → Penarikan Kesimpulan",
-                    d: "Wawancara → Angket → Observasi",
-                    e: "Random Sampling → Purposive Sampling"
-                },
-                correct: "c",
-                discussion: "Alur kualitatif terdiri dari Reduksi Data (penyaringan data penting), Penyajian Data (teks/bagan), dan Penarikan Kesimpulan."
-            },
-            {
-                q: "Langkah pertama yang paling awal dalam lima langkah sistematis penelitian sosial adalah...",
-                options: {
-                    a: "Mengumpulkan Data",
-                    b: "Membuat Rancangan (Proposal)",
-                    c: "Mengolah Data",
-                    d: "Menyusun Laporan",
-                    e: "Mengomunikasikan Hasil"
-                },
-                correct: "b",
-                discussion: "Langkah pertama adalah Membuat Rancangan (Proposal) yang mencakup penentuan topik, variabel, perumusan judul, latar belakang, rumusan masalah, dan tujuan."
-            },
-            {
-                q: "Kegiatan terjun ke lapangan mencari data kuantitatif atau kualitatif dari sumber primer maupun sekunder berada pada langkah sistematis ke-...",
-                options: {
-                    a: "Langkah 1",
-                    b: "Langkah 2 (Mengumpulkan Data)",
-                    c: "Langkah 3",
-                    d: "Langkah 4",
-                    e: "Langkah 5"
-                },
-                correct: "b",
-                discussion: "Langkah 2 adalah Mengumpulkan Data dengan terjun langsung ke lapangan mencari data dari sumber primer atau sekunder."
-            },
-            {
-                q: "Menganalisis data yang terkumpul, misalnya menggunakan software SPSS untuk angka atau pisau analisis teori untuk teks kualitatif, termasuk dalam langkah...",
-                options: {
-                    a: "Membuat Rancangan",
-                    b: "Mengumpulkan Data",
-                    c: "Mengolah Data",
-                    d: "Menyusun Laporan",
-                    e: "Mengomunikasikan Hasil"
-                },
-                correct: "c",
-                discussion: "Langkah 3 adalah Mengolah Data, di mana data dianalisis menggunakan SPSS untuk angka atau pisau analisis teori untuk teks kualitatif."
-            },
-            {
-                q: "Membentuk kerangka karya tulis yang utuh, meliputi Bagian Awal/Identitas → Bagian Isi/Bab Inti → Bagian Akhir/Lampiran adalah inti dari langkah...",
-                options: {
-                    a: "Menyusun Laporan",
-                    b: "Mengomunikasikan Hasil",
-                    c: "Membuat Proposal",
-                    d: "Mengumpulkan Data",
-                    e: "Reduksi Data"
-                },
-                correct: "a",
-                discussion: "Langkah 4 adalah Menyusun Laporan yang membentuk kerangka karya tulis utuh dari bagian awal, isi, hingga akhir."
-            },
-            {
-                q: "Mempresentasikan atau mempublikasikan hasil penelitian kepada publik agar bermanfaat, memicu diskusi, dan mendapatkan masukan merupakan langkah...",
-                options: {
-                    a: "Langkah 1",
-                    b: "Langkah 2",
-                    c: "Langkah 3",
-                    d: "Langkah 4",
-                    e: "Langkah 5 (Mengomunikasikan Hasil)"
-                },
-                correct: "e",
-                discussion: "Langkah 5 adalah Mengomunikasikan Hasil kepada publik agar bermanfaat dan mendapatkan masukan."
-            },
-            {
-                q: "Manakah di bawah ini yang bukan merupakan metode pendekatan utama dalam penelitian sosial?",
-                options: {
-                    a: "Kuantitatif",
-                    b: "Kualitatif",
-                    c: "Gabungan (Mixed Methods)",
-                    d: "Eksperimen Murni Tanpa Data",
-                    e: "Ketiga pendekatan di atas adalah benar"
-                },
-                correct: "d",
-                discussion: "Tiga metode pendekatan utama yang diakui adalah Kuantitatif, Kualitatif, dan Gabungan (Mixed Methods)."
+                discussion: "Dokumentasi melibatkan analisis arsip, buku, foto, atau artefak."
             },
             {
                 q: "Daftar pertanyaan tertulis yang dapat berbentuk terbuka atau tertutup dalam instrumen pencari fakta disebut...",
-                options: {
-                    a: "Wawancara",
-                    b: "Observasi",
-                    c: "Angket (Kuesioner)",
-                    d: "Dokumentasi",
-                    e: "Coding"
-                },
+                options: { a: "Wawancara", b: "Observasi", c: "Angket", d: "Dokumentasi", e: "Coding" },
                 correct: "c",
-                discussion: "Angket atau kuesioner adalah daftar pertanyaan tertulis yang berbentuk terbuka atau tertutup."
+                discussion: "Angket atau kuesioner adalah daftar pertanyaan tertulis."
             },
             {
-                q: "Mengapa pemilihan pisau analisis atau metode pendekatan yang tepat sangat penting bagi peneliti?",
-                options: {
-                    a: "Agar laporan terlihat tebal",
-                    b: "Agar data yang dihasilkan valid dan bisa dipertanggungjawabkan sesuai jenis data dan tujuan penelitian",
-                    c: "Supaya tidak perlu melakukan pengumpulan data",
-                    d: "Agar penelitian cepat selesai tanpa hambatan",
-                    e: "Agar tidak perlu menulis kesimpulan"
-                },
+                q: "Alur pengolahan data kuantitatif yang benar adalah...",
+                options: { a: "Tabulasi coding editing", b: "Editing coding tabulasi", c: "Reduksi penyajian kesimpulan", d: "Coding tabulasi editing", e: "Penyajian reduksi kesimpulan" },
                 correct: "b",
-                discussion: "Peneliti harus memilih pisau analisis yang tepat agar data yang dihasilkan valid dan bisa dipertanggungjawabkan."
+                discussion: "Alur kuantitatif dimulai dari Editing, dilanjutkan Coding, dan terakhir Tabulating."
             },
             {
-                q: "Apa fungsi utama dari tahap Reduksi Data dalam penelitian kualitatif?",
-                options: {
-                    a: "Memasukkan data ke dalam tabel angka",
-                    b: "Penyaringan data penting dan relevan",
-                    c: "Membuat kuesioner tertulis",
-                    d: "Menyusun daftar pustaka",
-                    e: "Menghitung statistik deskriptif"
-                },
+                q: "Alur pengolahan data kualitatif mencakup tahapan berikut...",
+                options: { a: "Editing coding tabulasi", b: "Survei eksperimen statistik", c: "Reduksi penyajian kesimpulan", d: "Wawancara angket observasi", e: "Random purposive sampling" },
+                correct: "c",
+                discussion: "Alur kualitatif terdiri dari Reduksi Data, Penyajian Data, dan Penarikan Kesimpulan."
+            },
+            {
+                q: "Agar data yang dihasilkan valid dan dapat dipertanggungjawabkan, ada berapa aspek teknik krusial?",
+                options: { a: "Dua aspek", b: "Tiga aspek", c: "Empat aspek", d: "Lima aspek", e: "Enam aspek" },
                 correct: "b",
-                discussion: "Reduksi data berfungsi sebagai penyaringan data penting agar fokus penelitian semakin tajam."
+                discussion: "Tiga aspek teknik krusial meliputi Penentuan Sampel, Pengumpulan Data, dan Pengolahan Data."
+            },
+            {
+                q: "Tahap awal dalam pengolahan data kuantitatif yang bertujuan memeriksa kelengkapan isian disebut...",
+                options: { a: "Coding", b: "Editing", c: "Tabulating", d: "Reduksi", e: "Sampling" },
+                correct: "b",
+                discussion: "Editing adalah tahap pemeriksaan kelengkapan dan kejelasan data."
+            },
+            {
+                q: "Proses pemberian tanda atau kategori angka pada data mentah kuantitatif dinamakan...",
+                options: { a: "Editing", b: "Coding", c: "Tabulating", d: "Observasi", e: "Validasi" },
+                correct: "b",
+                discussion: "Coding adalah proses pemberian kode atau kategori pada data."
+            },
+            {
+                q: "Memasukkan data yang sudah dikodekan ke dalam tabel distribusi frekuensi disebut...",
+                options: { a: "Editing", b: "Coding", c: "Tabulating", d: "Sampling", e: "Wawancara" },
+                correct: "c",
+                discussion: "Tabulating adalah proses memasukkan data ke dalam tabel."
+            },
+            {
+                q: "Teknik sampling yang memberikan peluang sama bagi setiap elemen populasi disebut...",
+                options: { a: "Random sampling", b: "Purposive sampling", c: "Snowball sampling", d: "Quota sampling", e: "Accidental sampling" },
+                correct: "a",
+                discussion: "Random sampling memberikan peluang yang sama bagi setiap anggota populasi."
+            },
+            {
+                q: "Teknik sampel berdasarkan pertimbangan dan kriteria khusus yang dibuat peneliti dinamakan...",
+                options: { a: "Random", b: "Purposive", c: "Area", d: "Cluster", e: "Sensus" },
+                correct: "b",
+                discussion: "Purposive sampling dipilih berdasarkan pertimbangan dan kriteria khusus."
+            },
+            {
+                q: "Metode wawancara yang menggunakan daftar pertanyaan tertulis secara ketat disebut...",
+                options: { a: "Terstruktur", b: "Tidak terstruktur", c: "Bebas", d: "Partisipatif", e: "Pasif" },
+                correct: "a",
+                discussion: "Wawancara terstruktur menggunakan panduan pertanyaan yang kaku dan seragam."
+            },
+            {
+                q: "Observasi di mana peneliti ikut melebur dan terlibat langsung dalam kegiatan subjek disebut...",
+                options: { a: "Partisipasi", b: "Nonpartisipasi", c: "Dokumentasi", d: "Angket terbuka", e: "Kuesioner" },
+                correct: "a",
+                discussion: "Observasi partisipasi melibatkan keterlibatan langsung peneliti dalam keseharian subjek."
+            },
+            {
+                q: "Tahap penyaringan dan pemilihan data mentah dalam riset kualitatif disebut...",
+                options: { a: "Reduksi data", b: "Tabulasi", c: "Coding angka", d: "Editing ketat", e: "Statistik" },
+                correct: "a",
+                discussion: "Reduksi data adalah proses pemilihan, pemusatan, dan penyaringan data kualitatif."
+            },
+            {
+                q: "Penyajian data dalam penelitian kualitatif umumnya berbentuk...",
+                options: { a: "Teks naratif dan bagan", b: "Tabel frekuensi angka", c: "Grafik pie murni", d: "Regresi linier", e: "Z-score" },
+                correct: "a",
+                discussion: "Penyajian data kualitatif disajikan dalam bentuk teks naratif, matrik, atau bagan."
+            },
+            {
+                q: "Langkah terakhir dalam alur pengolahan data kualitatif adalah...",
+                options: { a: "Penarikan kesimpulan", b: "Tabulasi tabel", c: "Pemberian kode angka", d: "Penyebaran angket", e: "Randomisasi" },
+                correct: "a",
+                discussion: "Kesimpulan ditarik dan diverifikasi sebagai akhir dari alur kualitatif."
+            },
+            {
+                q: "Manakah yang termasuk instrumen pencarian fakta dalam penelitian sosial?",
+                options: { a: "Wawancara dan angket", b: "Statistika inferensial", c: "Tabulasi silang", d: "Rumus regresi", e: "Uji hipotesis" },
+                correct: "a",
+                discussion: "Wawancara, angket, observasi, dan dokumentasi adalah instrumen pencari fakta."
+            },
+            {
+                q: "Pemilihan sampel acak bertingkat atau kelompok besar di berbagai wilayah dinamakan...",
+                options: { a: "Cluster / area sampling", b: "Purposive", c: "Snowball", d: "Accidental", e: "Judgement" },
+                correct: "a",
+                discussion: "Cluster atau area sampling digunakan untuk wilayah atau kelompok besar yang berjenjang."
+            },
+            {
+                q: "Wawancara yang berjalan seperti percakapan bebas tanpa pedoman ketat disebut...",
+                options: { a: "Wawancara tidak terstruktur", b: "Wawancara baku", c: "Kuesioner tertutup", d: "Angket kaku", e: "Sensus terstruktur" },
+                correct: "a",
+                discussion: "Wawancara tidak terstruktur bersifat fleksibel seperti dialog terbuka."
+            },
+            {
+                q: "Pengamatan tanpa melibatkan diri secara langsung dengan kelompok yang diteliti disebut...",
+                options: { a: "Observasi nonpartisipan", b: "Observasi partisipan", c: "Wawancara mendalam", d: "Studi dokumen", e: "Angket tertutup" },
+                correct: "a",
+                discussion: "Observasi nonpartisipan menempatkan peneliti sebagai pengamat luar."
+            },
+            {
+                q: "Dokumen resmi pemerintah, surat kabar, dan foto bersejarah termasuk sumber data...",
+                options: { a: "Dokumentasi", b: "Wawancara primer", c: "Observasi langsung", d: "Angket mandiri", e: "Eksperimen lab" },
+                correct: "a",
+                discussion: "Sumber data arsip dan dokumen merupakan bagian dari instrumen dokumentasi."
+            },
+            {
+                q: "Sebelum data kuantitatif dimasukkan ke tabel, apa yang harus dilakukan pada tahap editing?",
+                options: { a: "Memeriksa kelengkapan", b: "Memberi kode huruf", c: "Membuat kesimpulan", d: "Menyebar kuesioner", e: "Reduksi narasi" },
+                correct: "a",
+                discussion: "Editing bertujuan memeriksa kelengkapan, keterbacaan, dan konsistensi data."
+            },
+            {
+                q: "Pemberian kode angka pada kuesioner terbuka agar bisa dihitung disebut...",
+                options: { a: "Coding", b: "Editing", c: "Tabulating", d: "Sampling", e: "Reduksi" },
+                correct: "a",
+                discussion: "Coding adalah pemberian kode numerik untuk memudahkan pengolahan."
+            },
+            {
+                q: "Memasukkan data terkelompok ke dalam tabel rekapitulasi disebut...",
+                options: { a: "Tabulating", b: "Coding", c: "Editing", d: "Reduksi", e: "Sampling" },
+                correct: "a",
+                discussion: "Tabulating adalah penyusunan data ke dalam tabel."
+            },
+            {
+                q: "Tujuan utama dari teknik penentuan sampel probabilitas adalah...",
+                options: { a: "Representasi populasi", b: "Memilih informan kunci", c: "Mencari data tersembunyi", d: "Menghemat biaya total", e: "Menghindari responden" },
+                correct: "a",
+                discussion: "Probabilitas bertujuan agar sampel representatif dan bisa digeneralisasi ke populasi."
+            },
+            {
+                q: "Apa karakteristik utama dari teknik nonprobabilitas?",
+                options: { a: "Tidak semua elemen punya peluang", b: "Peluang sama besar", c: "Menggunakan rumus acak murni", d: "Sangat luas jangkauannya", e: "Berbasis undian komputer" },
+                correct: "a",
+                discussion: "Nonprobabilitas tidak memberikan peluang yang sama bagi setiap unsur populasi."
+            },
+            {
+                q: "Manakah yang merupakan contoh pengumpulan data primer langsung di lapangan?",
+                options: { a: "Wawancara responden", b: "Membaca buku perpustakaan", c: "Menelaah arsip lama", d: "Mengkaji undang-undang", e: "Melihat foto sejarah" },
+                correct: "a",
+                discussion: "Wawancara langsung dengan responden merupakan pengumpulan data primer."
+            },
+            {
+                q: "Manakah yang merupakan bentuk instrumen angket tertutup?",
+                options: { a: "Pilihan jawaban sudah disediakan", b: "Responden menulis bebas", c: "Wawancara lisan bebas", d: "Pengamatan diam-diam", e: "Analisis artefak" },
+                correct: "a",
+                discussion: "Angket tertutup menyediakan opsi pilihan jawaban yang tinggal dipilih."
+            },
+            {
+                q: "Manakah yang termasuk ke dalam tiga aspek teknik krusial penelitian sosial?",
+                options: { a: "Sampel, pengumpulan, pengolahan", b: "Judul, pendahuluan, daftar pustaka", c: "Cover, lampiran, indeks", d: "Kuesioner, tabel, kesimpulan", e: "Abstrak, bab isi, saran" },
+                correct: "a",
+                discussion: "Tiga aspek teknik krusial adalah penentuan sampel, pengumpulan data, dan pengolahan data."
+            },
+            {
+                q: "Tahap awal merapikan data kualitatif lapangan sebelum disajikan adalah...",
+                options: { a: "Reduksi data", b: "Tabulasi tabel frekuensi", c: "Coding statistik", d: "Uji regresi berganda", e: "Sensus penduduk" },
+                correct: "a",
+                discussion: "Reduksi data adalah langkah awal merapikan dan menyaring data kualitatif."
+            },
+            {
+                q: "Mengapa tahapan editing sangat krusial dalam kuantitatif?",
+                options: { a: "Mencegah data cacat/salah", b: "Membuat kuesioner baru", c: "Menambah jumlah sampel", d: "Menghapus responden malas", e: "Mengubah rumusan masalah" },
+                correct: "a",
+                discussion: "Editing menyaring data yang cacat, tidak lengkap, atau meragukan agar tidak keliru diolah."
+            },
+            {
+                q: "Manakah bentuk instrumen wawancara yang paling fleksibel?",
+                options: { a: "Tidak terstruktur", b: "Terstruktur ketat", c: "Angket tertutup", d: "Sensus baku", e: "Kuesioner kaku" },
+                correct: "a",
+                discussion: "Wawancara tidak terstruktur sangat fleksibel mengikuti arus pembicaraan."
+            },
+            {
+                q: "Apa fungsi utama dari tabel distribusi frekuensi dalam tabulasi data?",
+                options: { a: "Meringkas sebaran data", b: "Menghapus narasi", c: "Menambah jumlah soal", d: "Membuat kuesioner", e: "Menyusun daftar pustaka" },
+                correct: "a",
+                discussion: "Tabel distribusi frekuensi meringkas sebaran jawaban agar mudah dibaca."
+            },
+            {
+                q: "Metode penarikan sampel beruntun dari satu informan ke informan berikutnya disebut...",
+                options: { a: "Snowball sampling", b: "Random sampling", c: "Cluster sampling", d: "Area sampling", e: "Quota sampling" },
+                correct: "a",
+                discussion: "Snowball sampling (bola salju) berjalan berantai dari satu informan ke informan lain."
+            },
+            {
+                q: "Manakah yang merupakan contoh sumber data sekunder?",
+                options: { a: "Buku literatur dan arsip", b: "Jawaban wawancara langsung", c: "Hasil observasi partisipan", d: "Catatan lapangan harian", e: "Rekaman suara responden" },
+                correct: "a",
+                discussion: "Buku literatur dan arsip instansi merupakan sumber data sekunder."
+            },
+            {
+                q: "Dalam pengolahan data kuantitatif, setelah tahap editing dan coding, langkah selanjutnya adalah...",
+                options: { a: "Tabulating", b: "Reduksi", c: "Penyajian bagan", d: "Kesimpulan naratif", e: "Etnografi" },
+                correct: "a",
+                discussion: "Urutan kuantitatif: Editing -> Coding -> Tabulating."
+            },
+            {
+                q: "Apa fokus utama dari teknik observasi nonpartisipan?",
+                options: { a: "Mengamati tanpa terlibat", b: "Ikut serta dalam kegiatan", c: "Tanya jawab langsung", d: "Menyebar angket tertulis", e: "Mengkaji dokumen kuno" },
+                correct: "a",
+                discussion: "Observasi nonpartisipan mengamati perilaku objek tanpa ikut berpartisipasi di dalamnya."
             }
         ];
 
-        const extraQuestions = [
-            { q: "Apa fokus utama dari pendekatan Kuantitatif?", options: { a: "Angka & Statistik", b: "Makna mendalam", c: "Wawancara terbuka", d: "Studi kasus naratif", e: "Etnografi masyarakat" }, correct: "a", discussion: "Pendekatan kuantitatif berfokus pada angka dan statistik yang terstruktur sejak awal." },
-            { q: "Apa fokus utama dari pendekatan Kualitatif?", options: { a: "Analisis SPSS", b: "Makna & Deskripsi realitas sosial", c: "Survei skala besar", d: "Korelasional angka", e: "Tabulasi persentase" }, correct: "b", discussion: "Kualitatif berfokus pada makna dan deskripsi mendalam tentang realitas sosial." },
-            { q: "Contoh metode kuantitatif korelasional termasuk dalam pendekatan...", options: { a: "Kualitatif", b: "Kuantitatif", c: "Mixed Methods", d: "Historis", e: "Fenomenologi" }, correct: "b", discussion: "Korelasional adalah salah satu contoh dari metode kuantitatif." },
-            { q: "Contoh metode kualitatif grounded theory termasuk dalam pendekatan...", options: { a: "Kuantitatif", b: "Kualitatif", c: "Mixed Methods", d: "Eksperimen", e: "Survei" }, correct: "b", discussion: "Grounded theory adalah bagian dari pendekatan kualitatif." },
-            { q: "Apa fungsi dari software SPSS dalam penelitian kuantitatif?", options: { a: "Alat pengolah data angka/statistik", b: "Alat membuat animasi", c: "Alat edit foto arsip", d: "Perekam suara wawancara", e: "Penyaring data kualitatif" }, correct: "a", discussion: "SPSS digunakan untuk mengolah data angka secara statistik." },
-            { q: "Bagian awal dalam struktur penyusunan laporan penelitian biasanya berisi...", options: { a: "Identitas dan pengantar", b: "Bab inti analisis", c: "Lampiran data mentah", d: "Kesimpulan akhir", e: "Tabel tabulasi" }, correct: "a", discussion: "Bagian awal laporan memuat identitas, halaman judul, dan bagian pengantar." },
-            { q: "Bab inti atau pembahasan utama dalam laporan penelitian terletak pada...", options: { a: "Bagian Awal", b: "Bagian Isi", c: "Bagian Lampiran", d: "Daftar Pustaka", e: "Cover depan" }, correct: "b", discussion: "Bagian Isi adalah bab inti dari laporan penelitian." },
-            { q: "Lampiran dan instrumen lengkap penelitian ditempatkan pada...", options: { a: "Bagian Awal", b: "Bagian Isi/Bab Inti", c: "Bagian Akhir", d: "Rumusan Masalah", e: "Latar Belakang" }, correct: "c", discussion: "Lampiran dan instrumen pendukung diletakkan di Bagian Akhir laporan." },
-            { q: "Apa tujuan utama dari perumusan masalah dalam proposal penelitian?", options: { a: "Menentukan arah dan pertanyaan inti yang akan dijawab", b: "Memperbanyak halaman proposal", c: "Menghitung anggaran biaya", d: "Mewawancarai responden", e: "Membuat tabel statistik" }, correct: "a", discussion: "Perumusan masalah berupa pertanyaan untuk mengarahkan jalannya penelitian." },
-            { q: "Mengapa kejujuran pada data sangat ditekankan dalam penelitian?", options: { a: "Agar laporan cepat selesai", b: "Agar hasil penelitian valid, objektif, dan dapat dipertanggungjawabkan", c: "Supaya peneliti mendapat pujian", d: "Agar tidak perlu turun ke lapangan", e: "Supaya angka terlihat bagus" }, correct: "b", discussion: "Kejujuran pada data menjamin validitas dan objektivitas hasil penelitian ilmiah." },
-            { q: "Teknik wawancara terstruktur biasanya menggunakan...", options: { a: "Pedoman pertanyaan yang sudah disiapkan kaku/terinci", b: "Pertanyaan bebas tanpa arah", c: "Hanya observasi visual", d: "Arsip foto sejarah", e: "Eksperimen laboratorium" }, correct: "a", discussion: "Wawancara terstruktur menggunakan daftar pertanyaan yang telah disiapkan secara rinci." },
-            { q: "Wawancara tidak terstruktur bersifat...", options: { a: "Lebih fleksibel seperti percakapan natural", b: "Sangat kaku dan tertulis ketat", c: "Menggunakan kuesioner angka", d: "Hanya melalui SPSS", e: "Menggunakan rumus statistik" }, correct: "a", discussion: "Wawancara tidak terstruktur lebih fleksibel layaknya percakapan mendalam yang mengalir." },
-            { q: "Apa yang dimaksud dengan populasi dalam penelitian?", options: { a: "Keseluruhan objek atau subjek yang diteliti", b: "Hanya satu orang responden", c: "Buku pustaka di perpustakaan", d: "Hasil akhir laporan", e: "Tabel tabulasi data" }, correct: "a", discussion: "Populasi adalah keseluruhan wilayah generalisasi yang terdiri atas objek/subjek dengan kuantitas dan karakteristik tertentu." },
-            { q: "Apa yang dimaksud dengan sampel?", options: { a: "Sebagian dari jumlah dan karakteristik yang dimiliki oleh populasi", b: "Seluruh warga negara", c: "Semua buku arsip", d: "Judul penelitian", e: "Rumusan hipotesis" }, correct: "a", discussion: "Sampel adalah sebagian dari populasi yang diambil untuk diteliti." },
-            { q: "Manakah contoh sumber data primer?", options: { a: "Hasil wawancara langsung dengan narasumber/subjek", b: "Buku teks sejarah tahun 1950", c: "Artikel jurnal internasional orang lain", d: "Arsip dokumen kuno", e: "Statistik BPS yang sudah dipublikasikan" }, correct: "a", discussion: "Sumber primer diperoleh langsung dari subjek atau informan pertama di lapangan." },
-            { q: "Manakah contoh sumber data sekunder?", options: { a: "Catatan harian pribadi peneliti", b: "Hasil wawancara langsung", c: "Buku referensi, dokumen resmi, atau arsip data terdahulu", d: "Observasi partisipan pertama", e: "Jawaban kuesioner responden" }, correct: "c", discussion: "Sumber sekunder adalah sumber pendukung tidak langsung seperti buku, dokumen resmi, atau arsip." },
-            { q: "Apa bentuk penyajian data dalam metode kualitatif?", options: { a: "Teks naratif, uraian, atau bagan/skema", b: "Grafik batang SPSS", c: "Tabel angka statistik murni", d: "Diagram lingkaran persentase", e: "Korelasi Pearson" }, correct: "a", discussion: "Penyajian data kualitatif umumnya berupa teks naratif, uraian sistematis, atau bagan/skema." },
-            { q: "Apa bentuk penyajian data dalam metode kuantitatif?", options: { a: "Tabel angka, grafik statistik, dan diagram", b: "Cerita pendek", c: "Catatan harian etnografi", d: "Transkrip wawancara mendalam", e: "Analisis artefak budaya" }, correct: "a", discussion: "Penyajian data kuantitatif disajikan dalam bentuk tabel angka, grafik statistik, dan diagram." },
-            { q: "Mengapa penelitian sosial memerlukan langkah sistematis?", options: { a: "Agar proses ilmiah berjalan teratur dari awal hingga akhir", b: "Agar peneliti tidak perlu berpikir", c: "Supaya halaman laporan sedikit", d: "Agar tidak perlu menyusun kesimpulan", e: "Supaya data bisa diubah" }, correct: "a", discussion: "Langkah sistematis memastikan penelitian berjalan teratur, logis, dan dapat dipertanggungjawabkan secara ilmiah." },
-            { q: "Sikap apakah yang harus senantiasa dimiliki oleh seorang peneliti sosial?", options: { a: "Kritis, teliti, jujur pada data, dan objektif", b: "Asal-asalan dan terburu-buru", c: "Subjektif memihak satu golongan", d: "Malas membaca literatur", e: "Meniru karya orang lain" }, correct: "a", discussion: "Peneliti yang baik harus bersikap kritis, teliti, jujur pada data, serta objektif." }
+        const material3Pool = [
+            {
+                q: "Langkah pertama yang paling awal dalam lima langkah sistematis penelitian sosial adalah...",
+                options: { a: "Pengumpulan data", b: "Membuat rancangan", c: "Pengolahan data", d: "Penyusunan laporan", e: "Komunikasi hasil" },
+                correct: "b",
+                discussion: "Langkah pertama adalah Membuat Rancangan (Proposal) yang mencakup penentuan topik, variabel, judul, latar belakang, rumusan masalah, dan tujuan penelitian."
+            },
+            {
+                q: "Kegiatan terjun ke lapangan mencari data kuantitatif atau kualitatif dari sumber primer maupun sekunder berada pada langkah...",
+                options: { a: "Langkah satu", b: "Langkah dua", c: "Langkah tiga", d: "Langkah empat", e: "Langkah lima" },
+                correct: "b",
+                discussion: "Langkah 2 adalah Mengumpulkan Data di lapangan."
+            },
+            {
+                q: "Menganalisis data yang terkumpul menggunakan software statistik atau pisau analisis teori termasuk dalam langkah...",
+                options: { a: "Perancangan", b: "Pengumpulan", c: "Pengolahan data", d: "Penyusunan", e: "Komunikasi" },
+                correct: "c",
+                discussion: "Langkah 3 adalah Mengolah Data menggunakan alat bantu seperti SPSS atau analisis teori."
+            },
+            {
+                q: "Membentuk kerangka karya tulis yang utuh mulai dari bagian awal, bagian isi, hingga bagian akhir adalah inti dari langkah...",
+                options: { a: "Penyusunan laporan", b: "Pengumpulan data", c: "Perancangan proposal", d: "Reduksi data", e: "Pengujian statistik" },
+                correct: "a",
+                discussion: "Langkah 4 adalah Menyusun Laporan penelitian."
+            },
+            {
+                q: "Mempresentasikan atau mempublikasikan hasil penelitian kepada publik agar bermanfaat dan memicu diskusi adalah langkah...",
+                options: { a: "Langkah satu", b: "Langkah dua", c: "Langkah tiga", d: "Langkah empat", e: "Langkah lima" },
+                correct: "e",
+                discussion: "Langkah 5 adalah Mengomunikasikan Hasil kepada publik."
+            },
+            {
+                q: "Apa fungsi utama dari tahap Reduksi Data dalam penelitian kualitatif?",
+                options: { a: "Membuat tabel", b: "Penyaringan data", c: "Membuat kuesioner", d: "Daftar pustaka", e: "Statistik deskriptif" },
+                correct: "b",
+                discussion: "Reduksi data berfungsi untuk menyaring data penting dan relevan."
+            },
+            {
+                q: "Sebagai sebuah karya ilmiah, penelitian harus mengikuti prosedur baku sebanyak berapa langkah sistematis?",
+                options: { a: "Tiga langkah", b: "Empat langkah", c: "Lima langkah", d: "Enam langkah", e: "Tujuh langkah" },
+                correct: "c",
+                discussion: "Penelitian sosial mengikuti 5 langkah sistematis dari rancangan proposal hingga pengomunikasian hasil."
+            },
+            {
+                q: "Bagian awal dalam penyusunan laporan penelitian umumnya memuat...",
+                options: { a: "Identitas dan pengantar", b: "Kesimpulan bab akhir", c: "Lampiran tabel besar", d: "Daftar pustaka lengkap", e: "Saran penelitian" },
+                correct: "a",
+                discussion: "Bagian awal laporan memuat identitas, kata pengantar, dan daftar isi."
+            },
+            {
+                q: "Tujuan dari langkah kelima dalam penelitian sosial adalah...",
+                options: { a: "Menyimpan data pribadi", b: "Mendapat masukan publik", c: "Menghapus kuesioner", d: "Membuat proposal baru", e: "Menghitung statistik" },
+                correct: "b",
+                discussion: "Mengomunikasikan hasil bertujuan agar bermanfaat dan mendapatkan masukan dari publik."
+            },
+            {
+                q: "Perumusan judul dan latar belakang penelitian dikerjakan pada tahap...",
+                options: { a: "Pembuatan rancangan", b: "Pengumpulan data", c: "Pengolahan data", d: "Penyusunan laporan", e: "Publikasi jurnal" },
+                correct: "a",
+                discussion: "Judul dan latar belakang dibuat pada tahap perancangan proposal."
+            },
+            {
+                q: "Dalam langkah pertama penelitian, apa yang dimaksud dengan perumusan masalah?",
+                options: { a: "Pertanyaan riset", b: "Tabel hasil akhir", c: "Daftar pustaka buku", d: "Lampiran foto lapangan", e: "Kesimpulan bab penutup" },
+                correct: "a",
+                discussion: "Perumusan masalah adalah bentuk pertanyaan riset yang akan dijawab melalui penelitian."
+            },
+            {
+                q: "Software statistik yang sering digunakan dalam pengolahan data kuantitatif pada langkah ketiga adalah...",
+                options: { a: "SPSS", b: "Microsoft Word", c: "Adobe Photoshop", d: "Corel Draw", e: "Google Chrome" },
+                correct: "a",
+                discussion: "SPSS adalah software populer untuk mengolah data statistik kuantitatif."
+            },
+            {
+                q: "Bagian inti atau isi dari laporan penelitian biasanya mencakup bab...",
+                options: { a: "Pendahuluan hingga hasil", b: "Kata pengantar saja", c: "Daftar riwayat hidup", d: "Lampiran kuesioner kosong", e: "Indeks istilah" },
+                correct: "a",
+                discussion: "Bagian isi mencakup pendahuluan, tinjauan pustaka, metodologi, hasil, dan pembahasan."
+            },
+            {
+                q: "Mengapa komunikasi hasil penelitian kepada publik itu penting?",
+                options: { a: "Agar bermanfaat bagi masyarakat", b: "Untuk menambah jumlah soal", c: "Menghapus kuesioner lama", d: "Mempercepat waktu ujian", e: "Menghindari analisis data" },
+                correct: "a",
+                discussion: "Komunikasi hasil memastikan temuan penelitian memberikan kontribusi nyata bagi publik."
+            },
+            {
+                q: "Langkah manakah yang melibatkan kegiatan turun langsung ke lapangan menemui responden?",
+                options: { a: "Langkah dua", b: "Langkah satu", c: "Langkah tiga", d: "Langkah empat", e: "Langkah lima" },
+                correct: "a",
+                discussion: "Langkah 2 adalah tahap pengumpulan data langsung di lapangan."
+            },
+            {
+                q: "Penyusunan kerangka proposal penelitian dilakukan pada urutan ke berapa?",
+                options: { a: "Pertama", b: "Kedua", c: "Ketiga", d: "Keempat", e: "Kelima" },
+                correct: "a",
+                discussion: "Pembuatan rancangan atau proposal adalah langkah pertama."
+            },
+            {
+                q: "Analisis teks kualitatif pada tahap pengolahan data menggunakan...",
+                options: { a: "Pisau analisis teori", b: "Rumus regresi linier", c: "Tabel SPSS angka", d: "Kalkulator statistik murni", e: "Z-score distribusi" },
+                correct: "a",
+                discussion: "Analisis teks kualitatif menggunakan pisau analisis teori dan koding tematik."
+            },
+            {
+                q: "Bagian akhir dalam laporan penelitian sosial umumnya berisi...",
+                options: { a: "Kesimpulan dan saran", b: "Kata pengantar penulis", c: "Daftar isi ringkas", d: "Judul proposal riset", e: "Identitas peneliti utama" },
+                correct: "a",
+                discussion: "Bagian akhir laporan memuat bab kesimpulan, saran, serta lampiran pendukung."
+            },
+            {
+                q: "Sebelum menyusun laporan, peneliti harus menyelesaikan tahap...",
+                options: { a: "Pengolahan data", b: "Publikasi jurnal", c: "Penyusunan judul baru", d: "Perekrutan responden", e: "Pembuatan proposal awal" },
+                correct: "a",
+                discussion: "Pengolahan data harus selesai terlebih dahulu sebelum laporan disusun."
+            },
+            {
+                q: "Manakah yang merupakan urutan benar dari lima langkah sistematis penelitian sosial?",
+                options: { a: "Rancangan → Kumpul → Olah → Lapor → Komunikasi", b: "Kumpul → Olah → Rancangan → Lapor → Komunikasi", c: "Lapor → Komunikasi → Rancangan → Kumpul → Olah", d: "Olah → Rancangan → Kumpul → Komunikasi → Lapor", e: "Komunikasi → Lapor → Olah → Kumpul → Rancangan" },
+                correct: "a",
+                discussion: "Urutan baku: Membuat Rancangan -> Mengumpulkan Data -> Mengolah Data -> Menyusun Laporan -> Mengomunikasikan Hasil."
+            },
+            {
+                q: "Tujuan perumusan tujuan penelitian pada tahap rancangan adalah...",
+                options: { a: "Mengetahui arah sasaran", b: "Menambah jumlah halaman", c: "Menghapus hipotesis", d: "Mempercepat waktu ujian", e: "Menghindari responden" },
+                correct: "a",
+                discussion: "Tujuan penelitian memandu arah dan target yang ingin dicapai."
+            },
+            {
+                q: "Manakah yang termasuk kegiatan pada langkah keempat penelitian sosial?",
+                options: { a: "Menulis laporan ilmiah", b: "Menyebar kuesioner angket", c: "Menghitung statistik SPSS", d: "Merumuskan judul proposal", e: "Mempresentasikan di seminar" },
+                correct: "a",
+                discussion: "Langkah 4 adalah menyusun dan menulis laporan ilmiah."
+            },
+            {
+                q: "Mengapa rancangan proposal harus dibuat sebelum pengumpulan data?",
+                options: { a: "Agar penelitian terarah", b: "Menghabiskan kertas kerja", c: "Memenuhi syarat administratif", d: "Menghindari analisis data", e: "Mengurangi responden" },
+                correct: "a",
+                discussion: "Proposal membuat arah kerja peneliti terstruktur dan sistematis."
+            },
+            {
+                q: "Apa bentuk komunikasi hasil penelitian yang biasa dilakukan di akademisi?",
+                options: { a: "Seminar atau publikasi jurnal", b: "Penyebaran angket kosong", c: "Pemeriksaan data mentah", d: "Pembuatan kuesioner baru", e: "Pencarian informan kunci" },
+                correct: "a",
+                discussion: "Komunikasi hasil dapat melalui seminar ilmiah, artikel jurnal, atau diskusi publik."
+            },
+            {
+                q: "Manakah yang mencakup seluruh tahapan dari lima langkah sistematis?",
+                options: { a: "Proposal hingga komunikasi", b: "Hanya wawancara lapangan", c: "Hanya tabulasi statistik", d: "Hanya penyusunan judul", e: "Hanya penarikan kesimpulan" },
+                correct: "a",
+                discussion: "Lima langkah mencakup rentang utuh dari proposal hingga komunikasi hasil."
+            },
+            {
+                q: "Peran utama pembimbing atau literatur pada tahap rancangan adalah...",
+                options: { a: "Mematangkan kerangka teori", b: "Mengisi kuesioner responden", c: "Menghitung tabulasi SPSS", d: "Mencetak laporan akhir", e: "Menjual hasil riset" },
+                correct: "a",
+                discussion: "Literatur dan pembimbing membantu mematangkan kerangka teori di awal rancangan."
+            },
+            {
+                q: "Jika data lapangan telah terkumpul, langkah sistematis berikutnya adalah...",
+                options: { a: "Mengolah data", b: "Menyusun proposal", c: "Mencari judul baru", d: "Membuat kuesioner", e: "Menyebar angket" },
+                correct: "a",
+                discussion: "Setelah pengumpulan data (langkah 2), dilanjutkan dengan pengolahan data (langkah 3)."
+            },
+            {
+                q: "Apa isi utama dari bab pendahuluan dalam laporan penelitian?",
+                options: { a: "Latar belakang dan rumusan masalah", b: "Tabel hasil angka mentah", c: "Daftar pustaka lengkap", d: "Lampiran foto responden", e: "Indeks kata penting" },
+                correct: "a",
+                discussion: "Pendahuluan memuat latar belakang, rumusan masalah, dan tujuan penelitian."
+            },
+            {
+                q: "Bagaimana cara memastikan penelitian sosial berjalan objektif?",
+                options: { a: "Mengikuti prosedur 5 langkah", b: "Mengubah data sesuai keinginan", c: "Menghapus responden kritis", d: "Melewati tahap rancangan", e: "Tidak menggunakan teori" },
+                correct: "a",
+                discussion: "Objektivitas dijaga dengan mematuhi prosedur 5 langkah sistematis secara konsisten."
+            },
+            {
+                q: "Manakah yang merupakan wujud nyata dari langkah kelima?",
+                options: { a: "Publikasi jurnal ilmiah", b: "Penyusunan rancangan awal", c: "Pengisian angket responden", d: "Editing data kuesioner", e: "Pembuatan judul proposal" },
+                correct: "a",
+                discussion: "Publikasi jurnal ilmiah merupakan wujud nyata komunikasi hasil kepada publik."
+            }
         ];
 
-        const masterPool = [...rawQuestionPool, ...extraQuestions];
-
         let currentUser = "";
+        let selectedMaterial = "all";
         let selectedCount = 10;
         let selectedDurationMinutes = 10;
         let activeQuestions = [];
@@ -527,6 +946,7 @@
             errorNameEl.classList.add("hidden");
 
             currentUser = "Nur Ainun";
+            selectedMaterial = document.getElementById("select-material").value;
             selectedCount = parseInt(document.getElementById("select-count").value);
             selectedDurationMinutes = parseInt(document.getElementById("select-time").value);
 
@@ -543,14 +963,26 @@
         }
 
         function prepareQuiz() {
-            // Shuffle master pool using Fisher-Yates algorithm
-            const shuffledPool = [...masterPool];
-            for (let i = shuffledPool.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffledPool[i], shuffledPool[j]] = [shuffledPool[j], shuffledPool[i]];
+            let pool = [];
+            if (selectedMaterial === "1") {
+                pool = [...material1Pool];
+            } else if (selectedMaterial === "2") {
+                pool = [...material2Pool];
+            } else if (selectedMaterial === "3") {
+                pool = [...material3Pool];
+            } else {
+                pool = [...material1Pool, ...material2Pool, ...material3Pool];
             }
 
-            activeQuestions = shuffledPool.slice(0, selectedCount);
+            // Shuffle pool randomly
+            for (let i = pool.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [pool[i], pool[j]] = [pool[j], pool[i]];
+            }
+
+            // Ensure exact requested count without exceeding pool size
+            const targetCount = Math.min(selectedCount, pool.length);
+            activeQuestions = pool.slice(0, targetCount);
             userAnswers = {};
             currentIndex = 0;
             isGridOpen = false;
@@ -608,10 +1040,10 @@
             document.getElementById("quiz-progress-text").innerText = `Soal ${index + 1} dari ${activeQuestions.length}`;
             document.getElementById("quiz-progress-top").innerText = `Soal ${index + 1} dari ${activeQuestions.length}`;
             
-            let catName = "Metode Pendekatan";
-            if (index >= 3 && index < 8) catName = "Teknik Pelaksanaan";
-            if (index >= 8 && index < 10) catName = "Pengolahan Data";
-            if (index >= 10) catName = "Langkah Sistematis";
+            let catName = "Semua Materi";
+            if (selectedMaterial === "1") catName = "Materi 1: Pendekatan Utama";
+            else if (selectedMaterial === "2") catName = "Materi 2: Teknik Pelaksanaan";
+            else if (selectedMaterial === "3") catName = "Materi 3: Langkah Sistematis";
             document.getElementById("quiz-category").innerText = catName;
 
             document.getElementById("quiz-question").innerText = `${index + 1}. ${qData.q}`;
@@ -628,9 +1060,10 @@
                 
                 const btn = document.createElement("button");
                 btn.type = "button";
+                // Uniform neutral styling so correct answer cannot be guessed from layout or text length cues
                 btn.className = `w-full text-left p-4 rounded-xl border transition flex items-center space-x-3 text-sm md:text-base ${
                     isSelected 
-                        ? 'border-[#4A7C59] bg-[#e8f0eb] text-[#2b3e34] font-semibold shadow-sm' 
+                        ? 'border-[#4A7C59] bg-[#e8f0eb] text-[#2b3e34] font-medium shadow-sm' 
                         : 'border-gray-200 bg-white hover:bg-gray-50 text-gray-700'
                 }`;
                 
@@ -670,7 +1103,6 @@
             if (currentIndex < activeQuestions.length - 1) {
                 loadQuestion(currentIndex + 1);
             } else {
-                // Trigger confirmation modal before finishing
                 document.getElementById("confirm-modal").classList.remove("hidden");
             }
         }
@@ -737,7 +1169,6 @@
             document.getElementById("res-score").innerText = finalScore;
             document.getElementById("res-detail").innerText = `Benar ${correctCount} dari ${activeQuestions.length} soal (${finalScore}%)`;
 
-            // Score Appreciation or Encouragement Message
             const appreciationBox = document.getElementById("score-appreciation-box");
             if (finalScore >= 80) {
                 appreciationBox.className = "mb-6 p-4 rounded-xl text-xs md:text-sm font-medium bg-green-50 border-green-200 text-green-800";
